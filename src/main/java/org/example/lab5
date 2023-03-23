@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HumanBeings>
+<humanBeing>
+  <id>2</id>
+  <name>name</name>
+  <coordinates>
+    <x>3</x>
+    <y>7</y>
+  </coordinates>
+  <realHero>true</realHero>
+  <hasToothpick>true</hasToothpick>
+  <impactSpeed>4214</impactSpeed>
+  <soundtrackName>gsgweg</soundtrackName>
+  <weaponType>1</weaponType>
+  <mood>1</mood>
+  <car>
+    <cool>true</cool>
+  </car>
+</humanBeing>
+</HumanBeings>
