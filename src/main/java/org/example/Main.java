@@ -4,45 +4,26 @@ package org.example;
 import org.example.command.Invoker;
 import org.example.entities.CollectionController;
 import org.example.entities.HumanBeing;
-import org.example.entities.HumanBeings;
 import org.example.xmlParser.Reader;
+import org.example.xmlParser.Writer;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.io.IOException;
+import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
-        File file = new File("C:\\Users\\Неля\\IdeaProjects\\lab5-maven\\src\\main\\java\\org\\example\\lab5");
+    public static void main(String[] args) throws IOException {
+        File file = new File("C:\\Users\\fohad\\IdeaProjects\\LaboratoryWork5\\src\\main\\java\\org\\example\\lab5");
+        Writer writer = new Writer();
         Reader reader = new Reader(file);
-        HumanBeings humanBeings = reader.getPersons();
-        CollectionController cc = new CollectionController();
-        cc.addAll(humanBeings);
+        List<HumanBeing> humanBeings = reader.getPersons();
+        CollectionController cc = new CollectionController(humanBeings, writer, file);
+        //   cc.addAll(humanBeings);
 //        System.out.println(reader.getPersons());
-        HumanBeing humanBeing = new HumanBeing();
-        HumanBeing humanBeing1 = new HumanBeing();
-        HumanBeing humanBeing2 = new HumanBeing();
-        HumanBeing humanBeing3 = new HumanBeing();
-
-        humanBeing.setName("a");
-        humanBeing1.setName("fjdjs");
-        humanBeing2.setName("fsd");
-        humanBeing3.setName("ZZZZZZZZZZZZZ");
 
 
-        ArrayList<HumanBeing> a = new ArrayList<>();
-        a.add(humanBeing);
-        a.add(humanBeing1);
-        a.add(humanBeing2);
-        a.add(humanBeing3);
-
-        System.out.println(a);
-        Collections.sort(a);
-        System.out.println(a);
-        Invoker invoker = new Invoker();
+        Invoker invoker = new Invoker(cc);
         invoker.readCommands();
-
-
 
 
         // String a = System.getenv("lab5");
