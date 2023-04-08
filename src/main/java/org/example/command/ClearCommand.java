@@ -1,17 +1,22 @@
 package org.example.command;
 
-public class ClearCommand implements Command{
+import org.example.entities.CollectionController;
 
-    public ClearCommand(CollectionManager cm) {
-        this.cm = cm;
+
+public class ClearCommand implements Command {
+
+    private CollectionController cc;
+
+    public ClearCommand(CollectionController cc) {
+        this.cc = cc;
     }
 
-    private CollectionManager cm;
     @Override
     public void execute() {
-        cm.clear();
+        cc.clear();
     }
-    public String descr(){
+
+    public String descr() {
         return "clear - очистить коллекцию";
     }
 }

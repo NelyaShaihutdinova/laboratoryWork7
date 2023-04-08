@@ -1,16 +1,21 @@
 package org.example.command;
 
-public class ShowCommand implements Command{
-    public ShowCommand(CollectionManager cm) {
-        this.cm = cm;
+import org.example.entities.CollectionController;
+
+public class ShowCommand implements Command {
+    private CollectionController cc;
+
+
+    public ShowCommand(CollectionController cc) {
+        this.cc = cc;
     }
 
-    private CollectionManager cm;
     @Override
     public void execute() {
-        cm.show();
+        cc.show();
     }
-    public String descr(){
+
+    public String descr() {
         return "show - вывести все элементы коллекции";
     }
 }

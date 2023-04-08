@@ -1,16 +1,21 @@
 package org.example.command;
 
-public class InfoCommand implements Command{
-    public InfoCommand(CollectionManager cm) {
-        this.cm = cm;
+import org.example.entities.CollectionController;
+
+
+public class InfoCommand implements Command {
+    private CollectionController cc;
+
+    public InfoCommand(CollectionController cc) {
+        this.cc = cc;
     }
 
-    private CollectionManager cm;
     @Override
     public void execute() {
-        cm.info();
+        cc.info();
     }
-    public String descr(){
+
+    public String descr() {
         return "info - вывести информацию о коллекции";
     }
 }

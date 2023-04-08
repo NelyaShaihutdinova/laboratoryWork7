@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class Main {
+
     public static void main(String[] args) throws IOException {
         File file = new File("C:\\Users\\fohad\\IdeaProjects\\LaboratoryWork5\\src\\main\\java\\org\\example\\lab5");
         Writer writer = new Writer();

@@ -2,17 +2,19 @@ package org.example.command;
 
 import org.example.entities.*;
 
-import java.util.*;
+import java.util.Date;
+import java.util.Random;
+import java.util.Scanner;
 
 public class AddCommand implements Command {
-    public AddCommand(CollectionManager cm) {
-        this.cm = cm;
+    private CollectionController cc;
+
+    public AddCommand(CollectionController cc) {
+        this.cc = cc;
     }
 
-    private CollectionManager cm;
-
     @Override
-    public void execute(){
+    public void execute() {
         System.out.println("print name:");
         Scanner scanner = new Scanner(System.in);
         String newName = scanner.nextLine();
@@ -22,6 +24,11 @@ public class AddCommand implements Command {
 
         System.out.println("print y:");
         Integer newY = scanner.nextInt();
+
+//        System.out.println("print creationDate:");
+//        String newCreationDate0 = scanner.nextLine();
+//        Date newCreationDate = new Date(newCreationDate0);
+
 
         System.out.println("print realHero:");
         Boolean newRealHero = scanner.nextBoolean();
@@ -54,8 +61,7 @@ public class AddCommand implements Command {
         WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
         Mood mood  = Mood.fromInteger(newMood);
         HumanBeing humanBeing = new HumanBeing(newId, newName, newCoordinates, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
-
-        cm.add(humanBeing);
+        cc.add(humanBeing);
     }
     public String descr(){
         return "add - добавить новый элемент в коллекцию";

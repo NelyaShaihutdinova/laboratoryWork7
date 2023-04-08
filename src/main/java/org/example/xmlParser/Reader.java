@@ -2,19 +2,29 @@ package org.example.xmlParser;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import org.example.entities.HumanBeings;
+import org.example.entities.HumanBeing;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 //@JacksonXmlElementWrapper
 public class Reader {
     private File file;
+
     public Reader(File file) {
         this.file = file;
     }
 
-    public HumanBeings getPersons() {
-        return parsingPersonsFromXml(readFileToString(file));
+    public File getFile() {
+        return file;
+    }
+
+    public List<HumanBeing> getPersons() {
+        return Arrays.asList(parsingPersonsFromXml(readFileToString(file)));
     }
 
     private String readFileToString(File file) {
@@ -28,14 +38,14 @@ public class Reader {
         return new String(data);
     }
 
-    private HumanBeings parsingPersonsFromXml(String data) {
+    private HumanBeing[] parsingPersonsFromXml(String data) {
         XmlMapper xmlmapper = new XmlMapper();
         try {
-            HumanBeings humanBeings = xmlmapper.readValue(data, HumanBeings.class);
-            return humanBeings;
+            HumanBeing[] humanBeing = xmlmapper.readValue(data, HumanBeing[].class);
+            return humanBeing;
         } catch (JsonProcessingException e) {
             System.out.println(e.getMessage());
-            return new HumanBeings();
+            return new HumanBeing[0];
         }
     }
 }

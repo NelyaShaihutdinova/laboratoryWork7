@@ -3,6 +3,7 @@ package org.example.entities;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 public enum Mood {
+
     @JacksonXmlProperty(localName = "1")
     M1,
     @JacksonXmlProperty(localName = "2")
