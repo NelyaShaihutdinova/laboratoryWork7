@@ -1,5 +1,6 @@
 package org.example.command;
 
+
 import org.example.entities.CollectionController;
 
 public class AddIfMinCommand implements Command {
@@ -12,7 +13,6 @@ public class AddIfMinCommand implements Command {
     public void execute() {
         cc.addIfMin();
     }
-
 
     @Override
     public String descr() {
