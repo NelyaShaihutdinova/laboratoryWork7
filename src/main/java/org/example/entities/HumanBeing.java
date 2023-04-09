@@ -1,5 +1,6 @@
 package org.example.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import java.time.ZonedDateTime;
@@ -14,7 +15,7 @@ public class HumanBeing implements Comparable<HumanBeing> {
     private String name; //Поле не может быть null, Строка не может быть пустой
     @JacksonXmlProperty
     private Coordinates coordinates; //Поле не может быть null
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss z")
     private ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
 
     private Boolean realHero; //Поле не может быть null

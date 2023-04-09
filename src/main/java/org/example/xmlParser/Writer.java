@@ -1,6 +1,7 @@
 package org.example.xmlParser;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,6 +16,7 @@ public class Writer<T> {
     public String parsingPersonsToXml(List<T> collection) {
         try {
             String data;
+            xmlMapper.registerModule(new JavaTimeModule());
             data = xmlMapper.writeValueAsString(collection);
             return data;
         } catch (IOException e) {

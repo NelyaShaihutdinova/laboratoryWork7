@@ -3,10 +3,8 @@ package org.example.entities;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-import java.util.Objects;
-
 @JacksonXmlRootElement(localName = "coordinates")
-public class Coordinates implements Valid {
+public class Coordinates {
     @JacksonXmlProperty
     private Double x; //Поле не может быть null
     @JacksonXmlProperty
@@ -35,8 +33,8 @@ public class Coordinates implements Valid {
         stringBuilder.append(getX()).append(" ").append(getY());
         return stringBuilder.toString();
     }
-
-    public boolean isValid() {
-        return !Objects.isNull(x) && !Objects.isNull(y) && y <= 945;
-    }
+//
+//    public boolean isValid() {
+//        return !Objects.isNull(x) && !Objects.isNull(y) && y <= 945;
+//    }
 }

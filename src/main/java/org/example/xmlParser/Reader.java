@@ -2,6 +2,7 @@ package org.example.xmlParser;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.example.entities.HumanBeing;
 
 import java.io.BufferedInputStream;
@@ -41,6 +42,7 @@ public class Reader {
     private HumanBeing[] parsingPersonsFromXml(String data) {
         XmlMapper xmlmapper = new XmlMapper();
         try {
+            xmlmapper.registerModule(new JavaTimeModule());
             HumanBeing[] humanBeing = xmlmapper.readValue(data, HumanBeing[].class);
             return humanBeing;
         } catch (JsonProcessingException e) {
