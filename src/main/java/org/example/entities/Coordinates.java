@@ -3,13 +3,14 @@ package org.example.entities;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
+import java.util.Objects;
+
 @JacksonXmlRootElement(localName = "coordinates")
-public class Coordinates {
+public class Coordinates implements Valid {
     @JacksonXmlProperty
     private Double x; //Поле не может быть null
     @JacksonXmlProperty
     private Integer y; //Максимальное значение поля: 945, Поле не может быть null
-
 
     public Double getX() {
         return x;
@@ -35,8 +36,7 @@ public class Coordinates {
         return stringBuilder.toString();
     }
 
-//    @Override
-//    public String toString() {
-//
-//    }
+    public boolean isValid() {
+        return !Objects.isNull(x) && !Objects.isNull(y) && y <= 945;
+    }
 }

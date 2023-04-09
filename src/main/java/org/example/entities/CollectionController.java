@@ -6,6 +6,7 @@ import org.example.xmlParser.Writer;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -53,7 +54,7 @@ public class CollectionController {
     }
 
     public void info() {
-        System.out.println("Тип: HashSet" + " Количество элементов: " + collection.size());
+        System.out.println("Тип: HashSet" + " Дата инициализации: " + " Количество элементов: " + collection.size());
     }
 
     public void updateId(String param) {
@@ -69,9 +70,6 @@ public class CollectionController {
                 System.out.println("print y:");
                 Integer newY = scanner.nextInt();
 
-                System.out.println("print creationDate:");
-                String newCreationDate0 = scanner.nextLine();
-                Date newCreationDate = new Date(newCreationDate0);
 
                 System.out.println("print realHero:");
                 Boolean newRealHero = scanner.nextBoolean();
@@ -101,6 +99,7 @@ public class CollectionController {
                 WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
                 Mood mood = Mood.fromInteger(newMood);
                 int newId = humanBeing.getId();
+                ZonedDateTime newCreationDate = ZonedDateTime.now();
 
                 HumanBeing newHumanBeing = new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
 
@@ -120,17 +119,6 @@ public class CollectionController {
     }
 
     public void removeId(String param) {
-//        for (HumanBeing humanBeing : collection) {
-//            if (humanBeing.getId() == Integer.parseInt(String.valueOf(param))) {
-//                humanBeingItr.remove()
-//            }
-//        }
-//        for (Iterator<Integer> iterator = integers.iterator(); iterator.hasNext();) {
-//            Integer integer = iterator.next();
-//            if(integer == 2) {
-//                iterator.remove();
-//            }
-//        }
         collection.removeIf(humanBeing -> humanBeing.getId() == Integer.parseInt(String.valueOf(param)));
     }
 
@@ -144,10 +132,6 @@ public class CollectionController {
 
         System.out.println("print y:");
         Integer newY = scanner.nextInt();
-
-        System.out.println("print creationDate:");
-        String newCreationDate0 = scanner.nextLine();
-        Date newCreationDate = new Date(newCreationDate0);
 
         System.out.println("print realHero:");
         Boolean newRealHero = scanner.nextBoolean();
@@ -173,11 +157,12 @@ public class CollectionController {
         Integer newMood = scanner.nextInt();
 
         Random random = new Random(new Date().getTime());
-        int newId = random.nextInt();
+        int newId = random.nextInt(10000000);
         Coordinates newCoordinates = new Coordinates(newX, newY);
         Car newCar = new Car(newCool);
         WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
         Mood mood = Mood.fromInteger(newMood);
+        ZonedDateTime newCreationDate = ZonedDateTime.now();
 
         HumanBeing newHumanBeing = new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
 
@@ -213,10 +198,6 @@ public class CollectionController {
         System.out.println("print y:");
         Integer newY = scanner.nextInt();
 
-        System.out.println("print creationDate:");
-        String newCreationDate0 = scanner.nextLine();
-        Date newCreationDate = new Date(newCreationDate0);
-
         System.out.println("print realHero:");
         Boolean newRealHero = scanner.nextBoolean();
 
@@ -241,11 +222,12 @@ public class CollectionController {
         Integer newMood = scanner.nextInt();
 
         Random random = new Random(new Date().getTime());
-        int newId = random.nextInt();
+        int newId = random.nextInt(10000000);
         Coordinates newCoordinates = new Coordinates(newX, newY);
         Car newCar = new Car(newCool);
         WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
         Mood mood = Mood.fromInteger(newMood);
+        ZonedDateTime newCreationDate = ZonedDateTime.now();
 
         HumanBeing newHumanBeing = new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
 
@@ -262,9 +244,6 @@ public class CollectionController {
 
         System.out.println("print y:");
         Integer newY = scanner.nextInt();
-        System.out.println("print creationDate:");
-        String newCreationDate0 = scanner.nextLine();
-        Date newCreationDate = new Date(newCreationDate0);
 
         System.out.println("print realHero:");
         Boolean newRealHero = scanner.nextBoolean();
@@ -290,11 +269,12 @@ public class CollectionController {
         Integer newMood = scanner.nextInt();
 
         Random random = new Random(new Date().getTime());
-        int newId = random.nextInt();
+        int newId = random.nextInt(10000000);
         Coordinates newCoordinates = new Coordinates(newX, newY);
         Car newCar = new Car(newCool);
         WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
         Mood mood = Mood.fromInteger(newMood);
+        ZonedDateTime newCreationDate = ZonedDateTime.now();
 
         HumanBeing newHumanBeing = new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
 
@@ -333,10 +313,8 @@ public class CollectionController {
 
     }
 
-
     public void executeScript(String param) throws IOException {
         Invoker invoker = new Invoker(this);
         invoker.readCommandsScript(param);
-
     }
 }

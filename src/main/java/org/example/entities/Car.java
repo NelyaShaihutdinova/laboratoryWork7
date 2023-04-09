@@ -7,16 +7,11 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 public class Car {
     @JacksonXmlProperty
     private boolean cool;
-
     public Car () {
-
-
     }
-
     public Car(boolean cool) {
         this.cool = cool;
     }
-
     @Override
     public String toString() {
         return String.valueOf(cool);

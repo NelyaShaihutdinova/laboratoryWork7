@@ -2,6 +2,7 @@ package org.example.command;
 
 import org.example.entities.*;
 
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
@@ -54,13 +55,14 @@ public class AddCommand implements Command {
         Integer newMood = scanner.nextInt();
 
         Random random = new Random(new Date().getTime());
-        int newId = random.nextInt();
+        int newId = random.nextInt(100000000);
 
         Coordinates newCoordinates = new Coordinates(newX, newY);
         Car newCar = new Car(newCool);
         WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
-        Mood mood  = Mood.fromInteger(newMood);
-        HumanBeing humanBeing = new HumanBeing(newId, newName, newCoordinates, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
+        Mood mood = Mood.fromInteger(newMood);
+        ZonedDateTime newCreationDate = ZonedDateTime.now();
+        HumanBeing humanBeing = new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
         cc.add(humanBeing);
     }
     public String descr(){

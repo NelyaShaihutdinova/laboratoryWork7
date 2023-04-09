@@ -2,18 +2,20 @@ package org.example.entities;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Random;
 
-public class  HumanBeing implements Comparable<HumanBeing>{
+
+public class HumanBeing implements Comparable<HumanBeing> {
     @JacksonXmlProperty(localName = "id", isAttribute = true)
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     @JacksonXmlProperty
     private Coordinates coordinates; //Поле не может быть null
 
-    private java.util.Date creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
 
     private Boolean realHero; //Поле не может быть null
     private Boolean hasToothpick; //Поле не может быть null
@@ -28,26 +30,26 @@ public class  HumanBeing implements Comparable<HumanBeing>{
     public HumanBeing() {
     }
 
-    public HumanBeing(Integer id, String name, Coordinates coordinates, Date creationDate, Boolean realHero, Boolean hasToothpick, Double impactSpeed, String soundtrackName, WeaponType weaponType, Mood mood, Car car) {
+    public HumanBeing(Integer id, String name, Coordinates coordinates, ZonedDateTime creationDate, Boolean realHero, Boolean hasToothpick, Double impactSpeed, String soundtrackName, WeaponType weaponType, Mood mood, Car car) {
         Random random = new Random(new Date().getTime());
-        this.id = id != null ? id : random.nextInt();
+        this.id = id != null ? id : random.nextInt(100000000);
         this.name = name;
         this.coordinates = coordinates;
-        creationDate = new Date();
+        this.creationDate = creationDate != null ? creationDate : ZonedDateTime.now();
         this.realHero = realHero;
         this.hasToothpick = hasToothpick;
         this.impactSpeed = impactSpeed;
         this.soundtrackName = soundtrackName;
         this.weaponType = weaponType;
         this.mood = mood;
-
         this.car = car;
     }
-    public HumanBeing(int id, String name, Coordinates coordinates, Boolean realHero, Boolean hasToothpick, Double impactSpeed, String soundtrackName, WeaponType weaponType, Mood mood, Car car) {
-        this.id=id;
+
+    public HumanBeing(int id, String name, Coordinates coordinates, ZonedDateTime creationDate, Boolean realHero, Boolean hasToothpick, Double impactSpeed, String soundtrackName, WeaponType weaponType, Mood mood, Car car) {
+        this.id = id;
         this.name = name;
         this.coordinates = coordinates;
-        this.creationDate = new Date();
+        this.creationDate = creationDate;
         this.realHero = realHero;
         this.hasToothpick = hasToothpick;
         this.impactSpeed = impactSpeed;
@@ -73,13 +75,13 @@ public class  HumanBeing implements Comparable<HumanBeing>{
         this.coordinates = coordinates;
     }
 
-//    public ZonedDateTime getCreationDate() {
-//        return creationDate;
-//    }
-//
-//    public void setCreationDate(ZonedDateTime creationDate) {
-//        this.creationDate = creationDate;
-//    }
+    public ZonedDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(ZonedDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
 
     public Boolean getRealHero() {
         return realHero;
@@ -133,9 +135,6 @@ public class  HumanBeing implements Comparable<HumanBeing>{
         return car;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
 
     public void setCar(Car car) {
         this.car = car;
@@ -145,13 +144,9 @@ public class  HumanBeing implements Comparable<HumanBeing>{
         return id;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
     @Override
     public String toString() {
-        return "id: " + id + " name: " + name + " coordinates: " + coordinates + " realHero: " + realHero + " hasToothpicks: " + hasToothpick + " impactSpeed: " + impactSpeed + " soundtrackName: " + soundtrackName + " weaponType: " + weaponType + " moon: " + mood + " car: " + car;
+        return "id: " + id + " name: " + name + " coordinates: " + coordinates + " creationDate: " + creationDate + " realHero: " + realHero + " hasToothpicks: " + hasToothpick + " impactSpeed: " + impactSpeed + " soundtrackName: " + soundtrackName + " weaponType: " + weaponType + " moon: " + mood + " car: " + car;
     }
 
 
@@ -165,7 +160,7 @@ public class  HumanBeing implements Comparable<HumanBeing>{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HumanBeing that = (HumanBeing) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(coordinates, that.coordinates) &&
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(creationDate, that.creationDate) && Objects.equals(coordinates, that.coordinates) &&
                 Objects.equals(realHero, that.realHero) && Objects.equals(hasToothpick, that.hasToothpick) &&
                 Objects.equals(impactSpeed, that.impactSpeed) && Objects.equals(soundtrackName, that.soundtrackName) &&
                 weaponType == that.weaponType && mood == that.mood && Objects.equals(car, that.car);
@@ -173,6 +168,6 @@ public class  HumanBeing implements Comparable<HumanBeing>{
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, coordinates, realHero, hasToothpick, impactSpeed, soundtrackName, weaponType, mood, car);
+        return Objects.hash(id, name, coordinates, creationDate, realHero, hasToothpick, impactSpeed, soundtrackName, weaponType, mood, car);
     }
 }
