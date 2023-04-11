@@ -1,15 +1,15 @@
 package org.example.command;
 
 public class HelpCommand implements Command {
-    private Invoker inv;
+    private Invoker invoker;
 
-    public HelpCommand(Invoker inv) {
-        this.inv = inv;
+    public HelpCommand(Invoker invoker) {
+        this.invoker = invoker;
     }
 
     @Override
     public void execute() {
-        for (Command c : inv.getCommands().values()) {
+        for (Command c : invoker.getCommands().values()) {
             System.out.println(c.descr());
         }
         System.out.println("exit - завершить программу (без сохранения в файл)");

@@ -9,7 +9,6 @@ public class RemoveGreaterCommand implements Command {
         this.cc = cc;
     }
 
-
     public void execute() {
         cc.removeGreater();
     }

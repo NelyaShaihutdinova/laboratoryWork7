@@ -1,4 +1,4 @@
-package org.example.xmlParser;
+package org.example.parser;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
@@ -11,17 +11,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-
-//@JacksonXmlElementWrapper
 public class Reader {
     private File file;
 
     public Reader(File file) {
         this.file = file;
-    }
-
-    public File getFile() {
-        return file;
     }
 
     public List<HumanBeing> getPersons() {

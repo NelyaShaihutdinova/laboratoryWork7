@@ -2,10 +2,9 @@ package org.example.entities;
 
 
 import org.example.command.Invoker;
-import org.example.xmlParser.Writer;
+import org.example.parser.Writer;
 
 import java.io.File;
-import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -21,26 +20,16 @@ public class CollectionController {
         this.collection = new HashSet<HumanBeing>(collection);
         this.file = file;
         this.writer = writer;
-        //    this.collection = collection;
     }
 
-    public HashSet<HumanBeing> getCollection() {
-        return collection;
-    }
-
-    //    public void addAll(HumanBeings humanBeings) {
-//
-//        //    collection.addAll(List.of(humanBeings.getHumanBeing()));
-//    }
-    public void add(HumanBeing humanBeing) {
-        collection.add(humanBeing);
+    public void addNewHuman() {
+        HumanBeing newHumanBeing = personBuild();
+        collection.add(newHumanBeing);
         sort();
     }
 
     private void sort() {
-        collection = collection.stream()
-                .sorted()
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+        collection = collection.stream().sorted().collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     public void show() {
@@ -60,48 +49,8 @@ public class CollectionController {
     public void updateId(String param) {
         for (HumanBeing humanBeing : collection) {
             if (humanBeing.getId() == Integer.parseInt(String.valueOf(param))) {
-                System.out.println("print name:");
-                Scanner scanner = new Scanner(in);
-                String newName = scanner.nextLine();
 
-                System.out.println("print x:");
-                Double newX = scanner.nextDouble();
-
-                System.out.println("print y:");
-                Integer newY = scanner.nextInt();
-
-
-                System.out.println("print realHero:");
-                Boolean newRealHero = scanner.nextBoolean();
-
-                System.out.println("print hasToothpicks:");
-                Boolean newHasToothpick = scanner.nextBoolean();
-
-                System.out.println("print impactSpeed:");
-                Double newImpactSpeed = scanner.nextDouble();
-
-                scanner.nextLine();
-
-                System.out.println("print soundtrackName:");
-                String newSoundtrackName = scanner.nextLine();
-
-                System.out.println("print cool:");
-                Boolean newCool = scanner.nextBoolean();
-
-                System.out.println("print WeaponType:");
-                Integer newWeaponType = scanner.nextInt();
-
-                System.out.println("print Mood:");
-                Integer newMood = scanner.nextInt();
-
-                Coordinates newCoordinates = new Coordinates(newX, newY);
-                Car newCar = new Car(newCool);
-                WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
-                Mood mood = Mood.fromInteger(newMood);
-                int newId = humanBeing.getId();
-                ZonedDateTime newCreationDate = ZonedDateTime.now();
-
-                HumanBeing newHumanBeing = new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
+                HumanBeing newHumanBeing = personBuild();
 
                 humanBeing.setName(newHumanBeing.getName());
                 humanBeing.setCar(newHumanBeing.getCar());
@@ -123,56 +72,14 @@ public class CollectionController {
     }
 
     public void addIfMin() {
-        System.out.println("print name:");
-        Scanner scanner = new Scanner(in);
-        String newName = scanner.nextLine();
-
-        System.out.println("print x:");
-        Double newX = scanner.nextDouble();
-
-        System.out.println("print y:");
-        Integer newY = scanner.nextInt();
-
-        System.out.println("print realHero:");
-        Boolean newRealHero = scanner.nextBoolean();
-
-        System.out.println("print hasToothpicks:");
-        Boolean newHasToothpick = scanner.nextBoolean();
-
-        System.out.println("print impactSpeed:");
-        Double newImpactSpeed = scanner.nextDouble();
-
-        scanner.nextLine();
-
-        System.out.println("print soundtrackName:");
-        String newSoundtrackName = scanner.nextLine();
-
-        System.out.println("print cool:");
-        Boolean newCool = scanner.nextBoolean();
-
-        System.out.println("print WeaponType:");
-        Integer newWeaponType = scanner.nextInt();
-
-        System.out.println("print Mood:");
-        Integer newMood = scanner.nextInt();
-
-        Random random = new Random(new Date().getTime());
-        int newId = random.nextInt(10000000);
-        Coordinates newCoordinates = new Coordinates(newX, newY);
-        Car newCar = new Car(newCool);
-        WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
-        Mood mood = Mood.fromInteger(newMood);
-        ZonedDateTime newCreationDate = ZonedDateTime.now();
-
-        HumanBeing newHumanBeing = new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
-
-
+        HumanBeing newHumanBeing = personBuild();
         if (collection.size() == 0) {
             sort();
         } else if (collection.size() == 1) {
             for (HumanBeing humanBeing : collection) {
                 if (humanBeing.getImpactSpeed() > newHumanBeing.getImpactSpeed()) {
                     collection.add(newHumanBeing);
+                    sort();
                 }
             }
         } else {
@@ -188,97 +95,13 @@ public class CollectionController {
     }
 
     public void removeGreater() {
-        System.out.println("print name:");
-        Scanner scanner = new Scanner(in);
-        String newName = scanner.nextLine();
-
-        System.out.println("print x:");
-        Double newX = scanner.nextDouble();
-
-        System.out.println("print y:");
-        Integer newY = scanner.nextInt();
-
-        System.out.println("print realHero:");
-        Boolean newRealHero = scanner.nextBoolean();
-
-        System.out.println("print hasToothpicks:");
-        Boolean newHasToothpick = scanner.nextBoolean();
-
-        System.out.println("print impactSpeed:");
-        Double newImpactSpeed = scanner.nextDouble();
-
-        scanner.nextLine();
-
-        System.out.println("print soundtrackName:");
-        String newSoundtrackName = scanner.nextLine();
-
-        System.out.println("print cool:");
-        Boolean newCool = scanner.nextBoolean();
-
-        System.out.println("print WeaponType:");
-        Integer newWeaponType = scanner.nextInt();
-
-        System.out.println("print Mood:");
-        Integer newMood = scanner.nextInt();
-
-        Random random = new Random(new Date().getTime());
-        int newId = random.nextInt(10000000);
-        Coordinates newCoordinates = new Coordinates(newX, newY);
-        Car newCar = new Car(newCool);
-        WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
-        Mood mood = Mood.fromInteger(newMood);
-        ZonedDateTime newCreationDate = ZonedDateTime.now();
-
-        HumanBeing newHumanBeing = new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
-
-        collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() > newImpactSpeed);
+        HumanBeing newHumanBeing = personBuild();
+        collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() > newHumanBeing.getImpactSpeed());
     }
 
     public void removeLower() {
-        System.out.println("print name:");
-        Scanner scanner = new Scanner(in);
-        String newName = scanner.nextLine();
-
-        System.out.println("print x:");
-        Double newX = scanner.nextDouble();
-
-        System.out.println("print y:");
-        Integer newY = scanner.nextInt();
-
-        System.out.println("print realHero:");
-        Boolean newRealHero = scanner.nextBoolean();
-
-        System.out.println("print hasToothpicks:");
-        Boolean newHasToothpick = scanner.nextBoolean();
-
-        System.out.println("print impactSpeed:");
-        Double newImpactSpeed = scanner.nextDouble();
-
-        scanner.nextLine();
-
-        System.out.println("print soundtrackName:");
-        String newSoundtrackName = scanner.nextLine();
-
-        System.out.println("print cool:");
-        Boolean newCool = scanner.nextBoolean();
-
-        System.out.println("print WeaponType:");
-        Integer newWeaponType = scanner.nextInt();
-
-        System.out.println("print Mood:");
-        Integer newMood = scanner.nextInt();
-
-        Random random = new Random(new Date().getTime());
-        int newId = random.nextInt(10000000);
-        Coordinates newCoordinates = new Coordinates(newX, newY);
-        Car newCar = new Car(newCool);
-        WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
-        Mood mood = Mood.fromInteger(newMood);
-        ZonedDateTime newCreationDate = ZonedDateTime.now();
-
-        HumanBeing newHumanBeing = new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
-
-        collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() < newImpactSpeed);
+        HumanBeing newHumanBeing = personBuild();
+        collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() < newHumanBeing.getImpactSpeed());
     }
 
     public void countGreater(String param) {
@@ -287,7 +110,6 @@ public class CollectionController {
             if (humanBeing.getImpactSpeed() > Integer.parseInt(String.valueOf(param))) {
                 counter += 1;
             }
-            ;
         }
         System.out.println(counter);
     }
@@ -313,8 +135,53 @@ public class CollectionController {
 
     }
 
-    public void executeScript(String param) throws IOException {
+    public void executeScript(String param) {
         Invoker invoker = new Invoker(this);
         invoker.readCommandsScript(param);
+    }
+
+    public HumanBeing personBuild() {
+        System.out.println("print name:");
+        Scanner scanner = new Scanner(in);
+        String newName = scanner.nextLine();
+
+        System.out.println("print x:");
+        Double newX = scanner.nextDouble();
+
+        System.out.println("print y:");
+        Integer newY = scanner.nextInt();
+
+        System.out.println("print realHero:");
+        Boolean newRealHero = scanner.nextBoolean();
+
+        System.out.println("print hasToothpicks:");
+        Boolean newHasToothpick = scanner.nextBoolean();
+
+        System.out.println("print impactSpeed:");
+        Double newImpactSpeed = scanner.nextDouble();
+
+        scanner.nextLine();
+
+        System.out.println("print soundtrackName:");
+        String newSoundtrackName = scanner.nextLine();
+
+        System.out.println("print cool:");
+        Boolean newCool = scanner.nextBoolean();
+
+        System.out.println("print WeaponType:");
+        Integer newWeaponType = scanner.nextInt();
+
+        System.out.println("print Mood:");
+        Integer newMood = scanner.nextInt();
+
+        Random random = new Random(new Date().getTime());
+        int newId = random.nextInt(10000000);
+        Coordinates newCoordinates = new Coordinates(newX, newY);
+        Car newCar = new Car(newCool);
+        WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
+        Mood mood = Mood.fromInteger(newMood);
+        ZonedDateTime newCreationDate = ZonedDateTime.now();
+
+        return new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
     }
 }

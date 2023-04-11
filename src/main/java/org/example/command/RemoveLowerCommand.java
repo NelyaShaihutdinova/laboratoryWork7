@@ -13,7 +13,6 @@ public class RemoveLowerCommand implements Command {
         cc.removeLower();
     }
 
-
     @Override
     public String descr() {
         return "remove_lower - удалить из коллекции все элементы, меньшие, чем заданный";

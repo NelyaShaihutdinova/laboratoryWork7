@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import java.time.ZonedDateTime;
-import java.util.Date;
 import java.util.Objects;
-import java.util.Random;
 
 
 public class HumanBeing implements Comparable<HumanBeing> {
@@ -29,21 +27,6 @@ public class HumanBeing implements Comparable<HumanBeing> {
 
 
     public HumanBeing() {
-    }
-
-    public HumanBeing(Integer id, String name, Coordinates coordinates, ZonedDateTime creationDate, Boolean realHero, Boolean hasToothpick, Double impactSpeed, String soundtrackName, WeaponType weaponType, Mood mood, Car car) {
-        Random random = new Random(new Date().getTime());
-        this.id = id != null ? id : random.nextInt(100000000);
-        this.name = name;
-        this.coordinates = coordinates;
-        this.creationDate = creationDate != null ? creationDate : ZonedDateTime.now();
-        this.realHero = realHero;
-        this.hasToothpick = hasToothpick;
-        this.impactSpeed = impactSpeed;
-        this.soundtrackName = soundtrackName;
-        this.weaponType = weaponType;
-        this.mood = mood;
-        this.car = car;
     }
 
     public HumanBeing(int id, String name, Coordinates coordinates, ZonedDateTime creationDate, Boolean realHero, Boolean hasToothpick, Double impactSpeed, String soundtrackName, WeaponType weaponType, Mood mood, Car car) {

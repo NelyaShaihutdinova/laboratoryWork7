@@ -1,4 +1,4 @@
-package org.example.xmlParser;
+package org.example.parser;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -12,7 +12,6 @@ import java.util.List;
 public class Writer<T> {
     private final XmlMapper xmlMapper = new XmlMapper();
 
-    //хочу засунуть сериализованную коллекцию в массив, а потом этот массив через BufferedWriter впихуть в файл
     public String parsingPersonsToXml(List<T> collection) {
         try {
             String data;
@@ -21,9 +20,8 @@ public class Writer<T> {
             return data;
         } catch (IOException e) {
             System.out.println("exception");
-            return new String();
+            return "";
         }
-
     }
 
     public void writeCollectionToFile(String data, File file) {

@@ -3,6 +3,7 @@ package org.example.command;
 import org.example.entities.CollectionController;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 public class ExecuteScriptCommand implements Command {
     private CollectionController cc;
@@ -13,23 +14,7 @@ public class ExecuteScriptCommand implements Command {
         this.cc = cc;
     }
 
-    public void execute() throws IOException {
-//        try {
-//            File script = new File(param);
-//            FileReader fr = new FileReader(script);
-//            BufferedReader reader = new BufferedReader(fr);
-//            String line = reader.readLine();
-//
-//            while (line != null) {
-//                line = reader.readLine();
-//
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void execute() throws IOException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
         cc.executeScript(param);
     }
 

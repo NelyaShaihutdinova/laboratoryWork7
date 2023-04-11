@@ -33,8 +33,4 @@ public class Coordinates {
         stringBuilder.append(getX()).append(" ").append(getY());
         return stringBuilder.toString();
     }
-//
-//    public boolean isValid() {
-//        return !Objects.isNull(x) && !Objects.isNull(y) && y <= 945;
-//    }
 }
