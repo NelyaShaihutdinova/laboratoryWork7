@@ -205,39 +205,111 @@ public class CollectionController {
     }
 
     public HumanBeing personBuild() {
-        System.out.println("print name:");
         Scanner scanner = new Scanner(in);
-        String newName = scanner.nextLine();
+        String newName = null;
+        while (newName == null || newName == "") {
+            System.out.println("print name (String):");
+            try {
+                newName = scanner.nextLine();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите имя ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+        Double newX = null;
+        while (newX == null) {
+            System.out.println("print x (Double):");
+            try {
+                newX = scanner.nextDouble();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите x ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+        Integer newY = null;
+        while (newY == null || newY > 945) {
+            System.out.println("print y (Integer):");
+            try {
+                newY = scanner.nextInt();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите x ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+        Boolean newRealHero = null;
+        while (newRealHero == null) {
+            System.out.println("print realHero (Boolean):");
+            try {
+                newRealHero = scanner.nextBoolean();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите realHero ещё раз:)");
+                scanner.nextLine();
+            }
+        }
 
-        System.out.println("print x:");
-        Double newX = scanner.nextDouble();
+        Boolean newHasToothpick = null;
+        while (newHasToothpick == null) {
+            System.out.println("print hasToothpick (Boolean):");
+            try {
+                newHasToothpick = scanner.nextBoolean();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите hasToothpick ещё раз:)");
+                scanner.nextLine();
+            }
+        }
 
-        System.out.println("print y:");
-        Integer newY = scanner.nextInt();
-
-        System.out.println("print realHero:");
-        Boolean newRealHero = scanner.nextBoolean();
-
-        System.out.println("print hasToothpicks:");
-        Boolean newHasToothpick = scanner.nextBoolean();
-
-        System.out.println("print impactSpeed:");
-        Double newImpactSpeed = scanner.nextDouble();
+        Double newImpactSpeed = null;
+        while (newImpactSpeed == null || newImpactSpeed <= -992) {
+            System.out.println("print impactSpeed (Double):");
+            try {
+                newImpactSpeed = scanner.nextDouble();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите impactSpeed ещё раз:)");
+                scanner.nextLine();
+            }
+        }
 
         scanner.nextLine();
-
-        System.out.println("print soundtrackName:");
-        String newSoundtrackName = scanner.nextLine();
-
-        System.out.println("print cool:");
-        Boolean newCool = scanner.nextBoolean();
-
-        System.out.println("print WeaponType:");
-        Integer newWeaponType = scanner.nextInt();
-
-        System.out.println("print Mood:");
-        Integer newMood = scanner.nextInt();
-
+        String newSoundtrackName = null;
+        while (newSoundtrackName == null) {
+            System.out.println("print soundTrackName (String):");
+            try {
+                newSoundtrackName = scanner.nextLine();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите имя саундтрека ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+        Boolean newCool = null;
+        while (newCool == null) {
+            System.out.println("print cool (Boolean):");
+            try {
+                newCool = scanner.nextBoolean();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите cool ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+        Integer newWeaponType = null;
+        while (newWeaponType == null || newWeaponType < 1 || newWeaponType > 3) {
+            System.out.println("print WeaponType (Boolean):");
+            try {
+                newWeaponType = scanner.nextInt();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите WeaponType ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+        Integer newMood = null;
+        while (newMood == null || newMood < 1 || newMood > 4) {
+            System.out.println("print Mood (Boolean):");
+            try {
+                newMood = scanner.nextInt();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите Mood ещё раз:)");
+                scanner.nextLine();
+            }
+        }
         Random random = new Random(new Date().getTime());
         int newId = random.nextInt(10000000);
         Coordinates newCoordinates = new Coordinates(newX, newY);

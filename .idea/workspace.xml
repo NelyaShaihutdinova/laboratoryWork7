@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="004e6fb8-affb-4496-89dc-3c9665ed2c22" name="Changes" comment="ok">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/ReaderExecuteScript.java" afterDir="false" />
+    <list default="true" id="004e6fb8-affb-4496-89dc-3c9665ed2c22" name="Changes" comment="without validation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/AddCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/AddIfMinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/AddIfMinCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/Invoker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/Invoker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/RemoveGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/RemoveGreaterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/RemoveLowerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/RemoveLowerCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/UpdateIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/UpdateIdCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/HumanBeing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/HumanBeing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab5" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/Reader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/test" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/test" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +126,7 @@
       <workItem from="1681059460328" duration="10148000" />
       <workItem from="1681213642187" duration="22964000" />
       <workItem from="1681283777658" duration="8632000" />
-      <workItem from="1681487332211" duration="9638000" />
+      <workItem from="1681487332211" duration="13904000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1679557756007</created>
@@ -217,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681230161345</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="without validation">
+      <created>1681497501532</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1681497501532</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,61 +232,13 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="ok" />
+    <MESSAGE value="without validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="without validation" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java</url>
-          <line>255</line>
-          <option name="timeStamp" value="161" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java</url>
-          <line>273</line>
-          <option name="timeStamp" value="162" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java</url>
-          <line>268</line>
-          <option name="timeStamp" value="163" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="164" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="165" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="166" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="167" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="168" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="169" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="humanBeing" />
