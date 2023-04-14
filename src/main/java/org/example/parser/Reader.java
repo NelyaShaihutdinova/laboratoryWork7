@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+
 public class Reader {
     private File file;
 
@@ -28,6 +29,7 @@ public class Reader {
             data = inputStream.readAllBytes();
         } catch (IOException e) {
             System.out.println(e.getMessage());
+            System.out.println("exception");
             return "";
         }
         return new String(data);
@@ -41,6 +43,7 @@ public class Reader {
             return humanBeing;
         } catch (JsonProcessingException e) {
             System.out.println(e.getMessage());
+            System.out.println("no");
             return new HumanBeing[0];
         }
     }

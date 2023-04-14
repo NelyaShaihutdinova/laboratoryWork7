@@ -6,6 +6,7 @@ import org.example.parser.Writer;
 
 import java.io.File;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -15,15 +16,23 @@ public class CollectionController {
     private final Writer<HumanBeing> writer;
     private final File file;
     private HashSet<HumanBeing> collection;
+    private ZonedDateTime creationDate;
 
     public CollectionController(List<HumanBeing> collection, Writer writer, File file) {
         this.collection = new HashSet<HumanBeing>(collection);
         this.file = file;
         this.writer = writer;
+        this.creationDate = ZonedDateTime.now();
     }
 
     public void addNewHuman() {
         HumanBeing newHumanBeing = personBuild();
+        collection.add(newHumanBeing);
+        sort();
+    }
+
+    public void addNewHumanScript(String param) {
+        HumanBeing newHumanBeing = personBuildScript(param);
         collection.add(newHumanBeing);
         sort();
     }
@@ -43,7 +52,8 @@ public class CollectionController {
     }
 
     public void info() {
-        System.out.println("Тип: HashSet" + " Дата инициализации: " + " Количество элементов: " + collection.size());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm:ss");
+        System.out.println("Тип: HashSet" + " Дата инициализации: " + creationDate.format(formatter) + " Количество элементов: " + collection.size());
     }
 
     public void updateId(String param) {
@@ -51,6 +61,27 @@ public class CollectionController {
             if (humanBeing.getId() == Integer.parseInt(String.valueOf(param))) {
 
                 HumanBeing newHumanBeing = personBuild();
+
+                humanBeing.setName(newHumanBeing.getName());
+                humanBeing.setCar(newHumanBeing.getCar());
+                humanBeing.setCoordinates(newHumanBeing.getCoordinates());
+                humanBeing.setCreationDate(newHumanBeing.getCreationDate());
+                humanBeing.setRealHero(newHumanBeing.getRealHero());
+                humanBeing.setHasToothpick(newHumanBeing.getHasToothpick());
+                humanBeing.setImpactSpeed(newHumanBeing.getImpactSpeed());
+                humanBeing.setSoundtrackName(newHumanBeing.getSoundtrackName());
+                humanBeing.setWeaponType(newHumanBeing.getWeaponType());
+                humanBeing.setMood(newHumanBeing.getMood());
+            }
+        }
+        sort();
+    }
+
+    public void updateIdScript(String personData, String param) {
+        for (HumanBeing humanBeing : collection) {
+            if (humanBeing.getId() == Integer.parseInt(String.valueOf(param))) {
+
+                HumanBeing newHumanBeing = personBuildScript(personData);
 
                 humanBeing.setName(newHumanBeing.getName());
                 humanBeing.setCar(newHumanBeing.getCar());
@@ -94,13 +125,46 @@ public class CollectionController {
         }
     }
 
+    public void addIfMinScript(String param) {
+        HumanBeing newHumanBeing = personBuildScript(param);
+        if (collection.size() == 0) {
+            sort();
+        } else if (collection.size() == 1) {
+            for (HumanBeing humanBeing : collection) {
+                if (humanBeing.getImpactSpeed() > newHumanBeing.getImpactSpeed()) {
+                    collection.add(newHumanBeing);
+                    sort();
+                }
+            }
+        } else {
+            for (HumanBeing humanBeing : collection) {
+                if (collection.iterator().hasNext()) {
+                    if ((humanBeing.getImpactSpeed() < collection.iterator().next().getImpactSpeed()) && (humanBeing.getImpactSpeed()) > newHumanBeing.getImpactSpeed()) {
+                        collection.add(newHumanBeing);
+                        sort();
+                    }
+                }
+            }
+        }
+    }
+
     public void removeGreater() {
         HumanBeing newHumanBeing = personBuild();
         collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() > newHumanBeing.getImpactSpeed());
     }
 
+    public void removeGreaterScript(String param) {
+        HumanBeing newHumanBeing = personBuildScript(param);
+        collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() > newHumanBeing.getImpactSpeed());
+    }
+
     public void removeLower() {
         HumanBeing newHumanBeing = personBuild();
+        collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() < newHumanBeing.getImpactSpeed());
+    }
+
+    public void removeLowerScript(String param) {
+        HumanBeing newHumanBeing = personBuildScript(param);
         collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() < newHumanBeing.getImpactSpeed());
     }
 
@@ -182,6 +246,29 @@ public class CollectionController {
         Mood mood = Mood.fromInteger(newMood);
         ZonedDateTime newCreationDate = ZonedDateTime.now();
 
+        return new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
+    }
+
+    public HumanBeing personBuildScript(String param) {
+        String[] data = param.split(" ");
+        String newName = data[0];
+        Double newX = Double.valueOf(data[1]);
+        Integer newY = Integer.valueOf(data[2]);
+        Boolean newRealHero = Boolean.valueOf(data[3]);
+        Boolean newHasToothpick = Boolean.valueOf(data[4]);
+        Double newImpactSpeed = Double.valueOf(data[5]);
+        String newSoundtrackName = data[6];
+        Integer newWeaponType = Integer.valueOf(data[7]);
+        Integer newMood = Integer.valueOf(data[8]);
+        Boolean newCool = Boolean.valueOf(data[9]);
+
+        Random random = new Random(new Date().getTime());
+        int newId = random.nextInt(10000000);
+        Coordinates newCoordinates = new Coordinates(newX, newY);
+        Car newCar = new Car(newCool);
+        WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
+        Mood mood = Mood.fromInteger(newMood);
+        ZonedDateTime newCreationDate = ZonedDateTime.now();
         return new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
     }
 }

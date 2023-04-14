@@ -5,6 +5,7 @@ import org.example.entities.CollectionController;
 public class UpdateIdCommand implements Command {
     private CollectionController cc;
     private String param;
+    private String personData;
 
     public UpdateIdCommand() {
     }
@@ -14,8 +15,18 @@ public class UpdateIdCommand implements Command {
         this.cc = cc;
     }
 
+    public UpdateIdCommand(String param, CollectionController cc, String personData) {
+        this.param = param;
+        this.cc = cc;
+        this.personData = personData;
+    }
+
     public void execute() {
-        cc.updateId(param);
+        if (personData != null) {
+            cc.updateIdScript(personData, param);
+        } else {
+            cc.updateId(param);
+        }
     }
 
     @Override

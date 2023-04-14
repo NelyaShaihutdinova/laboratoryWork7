@@ -5,13 +5,23 @@ import org.example.entities.CollectionController;
 
 public class AddIfMinCommand implements Command {
     private CollectionController cc;
+    private String param;
 
     public AddIfMinCommand(CollectionController cc) {
         this.cc = cc;
     }
 
+    public AddIfMinCommand(CollectionController cc, String param) {
+        this.cc = cc;
+        this.param = param;
+    }
+
     public void execute() {
-        cc.addIfMin();
+        if (param != null) {
+            cc.addIfMinScript(param);
+        } else {
+            cc.addIfMin();
+        }
     }
 
     @Override

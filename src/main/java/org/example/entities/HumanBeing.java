@@ -25,8 +25,11 @@ public class HumanBeing implements Comparable<HumanBeing> {
     @JacksonXmlProperty
     private Car car; //Поле может быть null
 
-
     public HumanBeing() {
+    }
+
+
+    public HumanBeing(int newId, String newName, Coordinates newCoordinates, ZonedDateTime newCreationDate, Boolean newRealHero, Boolean newHasToothpick, Integer newImpactSpeed, String newSoundtrackName, WeaponType weaponType, Mood mood, Car newCar) {
     }
 
     public HumanBeing(int id, String name, Coordinates coordinates, ZonedDateTime creationDate, Boolean realHero, Boolean hasToothpick, Double impactSpeed, String soundtrackName, WeaponType weaponType, Mood mood, Car car) {
