@@ -129,8 +129,9 @@ public class CollectionController {
         }
     }
 
-    public void addIfMinScript(String param) {
+    public void addIfMinScript(String param) throws ValidException {
         HumanBeing newHumanBeing = personBuildScript(param);
+        humanValidator.checkElement(newHumanBeing);
         if (collection.size() == 0) {
             sort();
         } else if (collection.size() == 1) {

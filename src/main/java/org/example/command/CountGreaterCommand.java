@@ -1,6 +1,7 @@
 package org.example.command;
 
 import org.example.entities.CollectionController;
+import org.example.exception.ValidException;
 
 
 public class CountGreaterCommand implements Command {
@@ -12,7 +13,7 @@ public class CountGreaterCommand implements Command {
         this.cc = cc;
     }
 
-    public void execute() {
+    public void execute() throws ValidException {
         cc.countGreater(param);
     }
 

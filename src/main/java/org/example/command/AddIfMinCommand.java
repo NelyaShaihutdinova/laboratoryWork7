@@ -2,6 +2,7 @@ package org.example.command;
 
 
 import org.example.entities.CollectionController;
+import org.example.exception.ValidException;
 
 public class AddIfMinCommand implements Command {
     private CollectionController cc;
@@ -16,7 +17,7 @@ public class AddIfMinCommand implements Command {
         this.param = param;
     }
 
-    public void execute() {
+    public void execute() throws ValidException {
         if (param != null) {
             cc.addIfMinScript(param);
         } else {
