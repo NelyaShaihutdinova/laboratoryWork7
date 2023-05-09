@@ -2,6 +2,7 @@ package org.example.entities;
 
 
 import org.example.command.Invoker;
+import org.example.exception.ValidException;
 import org.example.parser.Writer;
 
 import java.io.File;
@@ -14,15 +15,17 @@ import static java.lang.System.in;
 
 public class CollectionController {
     private final Writer<HumanBeing> writer;
+    private final Validator<HumanBeing> humanValidator;
     private final File file;
     private HashSet<HumanBeing> collection;
     private ZonedDateTime creationDate;
 
-    public CollectionController(List<HumanBeing> collection, Writer writer, File file) {
-        this.collection = new HashSet<HumanBeing>(collection);
+    public CollectionController(List<HumanBeing> collection, Writer<HumanBeing> writer, File file, Validator<HumanBeing> validator) {
+        this.collection = new HashSet<>(collection);
         this.file = file;
         this.writer = writer;
         this.creationDate = ZonedDateTime.now();
+        this.humanValidator = validator;
     }
 
     public void addNewHuman() {
@@ -31,8 +34,9 @@ public class CollectionController {
         sort();
     }
 
-    public void addNewHumanScript(String param) {
+    public void addNewHumanScript(String param) throws ValidException {
         HumanBeing newHumanBeing = personBuildScript(param);
+        humanValidator.checkElement(newHumanBeing);
         collection.add(newHumanBeing);
         sort();
     }
@@ -199,7 +203,7 @@ public class CollectionController {
 
     }
 
-    public void executeScript(String param) {
+    public void executeScript(String param) throws ValidException {
         Invoker invoker = new Invoker(this);
         invoker.readCommandsScript(param);
     }

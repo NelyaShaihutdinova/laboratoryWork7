@@ -1,6 +1,7 @@
 package org.example.command;
 
 import org.example.entities.CollectionController;
+import org.example.exception.ValidException;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -45,33 +46,38 @@ public class Invoker {
     }
 
     public void readCommands() throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        Scanner sc = new Scanner(System.in);
-        while (sc.hasNext()) {
-            String line = sc.nextLine();
-            String[] tokens = line.split(" ");
-            Command command = commands.get(tokens[0]);
-            if (tokens.length == 2) {
-                param = tokens[1];
-                Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class).newInstance(param, cc);
-                commands.replace(tokens[0], updatedCommand);
-                String exit = "exit";
-                if (exit.equals(line)) {
-                    sc.close();
+        try {
+            Scanner sc = new Scanner(System.in);
+            while (sc.hasNext()) {
+                String line = sc.nextLine();
+                String[] tokens = line.split(" ");
+                Command command = commands.get(tokens[0]);
+                if (tokens.length == 2) {
+                    param = tokens[1];
+                    Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class).newInstance(param, cc);
+                    commands.replace(tokens[0], updatedCommand);
+                    String exit = "exit";
+                    if (exit.equals(line)) {
+                        sc.close();
+                    } else {
+                        updatedCommand.execute();
+                    }
                 } else {
-                    updatedCommand.execute();
-                }
-            } else {
-                String exit = "exit";
-                if (exit.equals(line)) {
-                    sc.close();
-                } else {
-                    command.execute();
+                    String exit = "exit";
+                    if (exit.equals(line)) {
+                        sc.close();
+                    } else {
+                        command.execute();
+                    }
                 }
             }
+        } catch (ValidException e) {
+            System.out.println(e.getMessage());
+            readCommands();
         }
     }
 
-    public void readCommandsScript(String newParam) {
+    public void readCommandsScript(String newParam) throws ValidException {
         try {
             File script = new File(newParam);
             FileReader fr = new FileReader(script);

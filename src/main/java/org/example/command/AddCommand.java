@@ -1,6 +1,7 @@
 package org.example.command;
 
 import org.example.entities.CollectionController;
+import org.example.exception.ValidException;
 
 public class AddCommand implements Command {
     private CollectionController cc;
@@ -16,7 +17,7 @@ public class AddCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws ValidException {
         if (param != null) {
             cc.addNewHumanScript(param);
         } else {
