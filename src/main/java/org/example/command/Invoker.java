@@ -1,6 +1,7 @@
 package org.example.command;
 
 import org.example.entities.CollectionController;
+import org.example.exception.ExecuteScriptException;
 import org.example.exception.ValidException;
 
 import java.io.*;
@@ -74,6 +75,8 @@ public class Invoker {
         } catch (ValidException e) {
             System.out.println(e.getMessage());
             readCommands();
+        } catch (ExecuteScriptException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -150,6 +153,8 @@ public class Invoker {
             throw new RuntimeException(ex);
         } catch (NoSuchMethodException ex) {
             throw new RuntimeException(ex);
+        } catch (ExecuteScriptException e) {
+            throw new RuntimeException(e);
         }
     }
 }

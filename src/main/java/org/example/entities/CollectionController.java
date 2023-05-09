@@ -2,6 +2,7 @@ package org.example.entities;
 
 
 import org.example.command.Invoker;
+import org.example.exception.ExecuteScriptException;
 import org.example.exception.ValidException;
 import org.example.parser.Writer;
 
@@ -16,6 +17,7 @@ import static java.lang.System.in;
 public class CollectionController {
     private final Writer<HumanBeing> writer;
     private final Validator<HumanBeing> humanValidator;
+    private final RecursionChecker recursionChecker = new RecursionChecker();
     private final File file;
     private HashSet<HumanBeing> collection;
     private ZonedDateTime creationDate;
@@ -81,11 +83,12 @@ public class CollectionController {
         sort();
     }
 
-    public void updateIdScript(String personData, String param) {
+    public void updateIdScript(String personData, String param) throws ValidException {
         for (HumanBeing humanBeing : collection) {
             if (humanBeing.getId() == Integer.parseInt(String.valueOf(param))) {
 
                 HumanBeing newHumanBeing = personBuildScript(personData);
+                humanValidator.checkElement(newHumanBeing);
 
                 humanBeing.setName(newHumanBeing.getName());
                 humanBeing.setCar(newHumanBeing.getCar());
@@ -102,8 +105,12 @@ public class CollectionController {
         sort();
     }
 
-    public void removeId(String param) {
-        collection.removeIf(humanBeing -> humanBeing.getId() == Integer.parseInt(String.valueOf(param)));
+    public void removeId(String param) throws ValidException {
+        if (param.matches("^[0-9]+$")) {
+            collection.removeIf(humanBeing -> humanBeing.getId() == Integer.parseInt(String.valueOf(param)));
+        } else {
+            throw new ValidException("Uncorrected id");
+        }
     }
 
     public void addIfMin() {
@@ -158,8 +165,9 @@ public class CollectionController {
         collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() > newHumanBeing.getImpactSpeed());
     }
 
-    public void removeGreaterScript(String param) {
+    public void removeGreaterScript(String param) throws ValidException {
         HumanBeing newHumanBeing = personBuildScript(param);
+        humanValidator.checkElement(newHumanBeing);
         collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() > newHumanBeing.getImpactSpeed());
     }
 
@@ -168,34 +176,47 @@ public class CollectionController {
         collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() < newHumanBeing.getImpactSpeed());
     }
 
-    public void removeLowerScript(String param) {
+    public void removeLowerScript(String param) throws ValidException {
         HumanBeing newHumanBeing = personBuildScript(param);
+        humanValidator.checkElement(newHumanBeing);
         collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() < newHumanBeing.getImpactSpeed());
     }
 
-    public void countGreater(String param) {
-        int counter = 0;
-        for (HumanBeing humanBeing : collection) {
-            if (humanBeing.getImpactSpeed() > Integer.parseInt(String.valueOf(param))) {
-                counter += 1;
+    public void countGreater(String param) throws ValidException {
+        if (param.matches("^[-+]?[0-9]*\\\\.?[0-9]+$") && Double.parseDouble(param) > -992) {
+            int counter = 0;
+            for (HumanBeing humanBeing : collection) {
+                if (humanBeing.getImpactSpeed() > Integer.parseInt(String.valueOf(param))) {
+                    counter += 1;
+                }
             }
-        }
-        System.out.println(counter);
-    }
-
-    public void filterContains(String param) {
-        for (HumanBeing humanBeing : collection) {
-            if (humanBeing.getSoundtrackName().contains(param)) {
-                System.out.println(humanBeing);
-            }
+            System.out.println(counter);
+        } else {
+            throw new ValidException("Uncorrected ImpactSpeed");
         }
     }
 
-    public void filterGreater(String param) {
-        for (HumanBeing humanBeing : collection) {
-            if (humanBeing.getImpactSpeed() > Integer.parseInt(String.valueOf(param))) {
-                System.out.println(humanBeing);
+    public void filterContains(String param) throws ValidException {
+        if (param != null) {
+            for (HumanBeing humanBeing : collection) {
+                if (humanBeing.getSoundtrackName().contains(param)) {
+                    System.out.println(humanBeing);
+                }
             }
+        } else {
+            throw new ValidException("Uncorrected SoundTrackName");
+        }
+    }
+
+    public void filterGreater(String param) throws ValidException {
+        if (param.matches("^[-+]?[0-9]*\\.?[0-9]+$") && Double.parseDouble(param) > -992) {
+            for (HumanBeing humanBeing : collection) {
+                if (humanBeing.getImpactSpeed() > Integer.parseInt(String.valueOf(param))) {
+                    System.out.println(humanBeing);
+                }
+            }
+        } else {
+            throw new ValidException("Uncorrected ImpactSpeed");
         }
     }
 
@@ -204,9 +225,39 @@ public class CollectionController {
 
     }
 
-    public void executeScript(String param) throws ValidException {
+    public void executeScript(String param) throws ValidException, ExecuteScriptException {
+        recursionChecker.addFile(param);
         Invoker invoker = new Invoker(this);
         invoker.readCommandsScript(param);
+    }
+
+    public HumanBeing personBuildScript(String param) throws ValidException {
+        String[] data = param.split(" ");
+        if ((data[0] != null) && (data[1].matches("^[-+]?[0-9]*\\.?[0-9]+$")) &&
+                (data[2].matches("^[-+]?[0-9]+$") && Double.parseDouble(param) < 945) &&
+                (data[5].matches("^[-+]?[0-9]*\\.?[0-9]+$") && Double.parseDouble(param) > -992) &&
+                (data[6] != null) && (data[7].matches("^[1-3]$")) && (data[8].matches("^[1-4]$"))) {
+            String newName = data[0];
+            Double newX = Double.valueOf(data[1]);
+            Integer newY = Integer.valueOf(data[2]);
+            Boolean newRealHero = Boolean.valueOf(data[3]);
+            Boolean newHasToothpick = Boolean.valueOf(data[4]);
+            Double newImpactSpeed = Double.valueOf(data[5]);
+            String newSoundtrackName = data[6];
+            Integer newWeaponType = Integer.valueOf(data[7]);
+            Integer newMood = Integer.valueOf(data[8]);
+            Boolean newCool = Boolean.valueOf(data[9]);
+            Random random = new Random(new Date().getTime());
+            int newId = random.nextInt(10000000);
+            Coordinates newCoordinates = new Coordinates(newX, newY);
+            Car newCar = new Car(newCool);
+            WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
+            Mood mood = Mood.fromInteger(newMood);
+            ZonedDateTime newCreationDate = ZonedDateTime.now();
+            return new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
+        } else {
+            throw new ValidException("Uncorrected person data");
+        }
     }
 
     public HumanBeing personBuild() {
@@ -326,26 +377,32 @@ public class CollectionController {
         return new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
     }
 
-    public HumanBeing personBuildScript(String param) {
-        String[] data = param.split(" ");
-        String newName = data[0];
-        Double newX = Double.valueOf(data[1]);
-        Integer newY = Integer.valueOf(data[2]);
-        Boolean newRealHero = Boolean.valueOf(data[3]);
-        Boolean newHasToothpick = Boolean.valueOf(data[4]);
-        Double newImpactSpeed = Double.valueOf(data[5]);
-        String newSoundtrackName = data[6];
-        Integer newWeaponType = Integer.valueOf(data[7]);
-        Integer newMood = Integer.valueOf(data[8]);
-        Boolean newCool = Boolean.valueOf(data[9]);
+    private static class RecursionChecker {
+        private final HashSet<String> history;
+        private int size;
 
-        Random random = new Random(new Date().getTime());
-        int newId = random.nextInt(10000000);
-        Coordinates newCoordinates = new Coordinates(newX, newY);
-        Car newCar = new Car(newCool);
-        WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
-        Mood mood = Mood.fromInteger(newMood);
-        ZonedDateTime newCreationDate = ZonedDateTime.now();
-        return new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
+        private RecursionChecker() {
+            history = new HashSet<>();
+        }
+
+        private void addFile(String file) throws ExecuteScriptException {
+            history.add(file);
+            size += 1;
+            checkRecursion();
+        }
+
+        private void checkRecursion() throws ExecuteScriptException {
+            if (history.size() != size) {
+                throw new ExecuteScriptException("RECURSION:(");
+            }
+        }
+
+        private HashSet<String> getHistory() {
+            return history;
+        }
+
+        private void setSize() {
+            this.size = 0;
+        }
     }
 }

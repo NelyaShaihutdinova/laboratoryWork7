@@ -1,6 +1,7 @@
 package org.example.command;
 
 import org.example.entities.CollectionController;
+import org.example.exception.ValidException;
 
 public class FilterContainsCommand implements Command {
     private CollectionController cc;
@@ -11,7 +12,7 @@ public class FilterContainsCommand implements Command {
         this.cc = cc;
     }
 
-    public void execute() {
+    public void execute() throws ValidException {
         cc.filterContains(param);
     }
 

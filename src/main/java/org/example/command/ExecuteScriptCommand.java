@@ -1,12 +1,13 @@
 package org.example.command;
 
 import org.example.entities.CollectionController;
+import org.example.exception.ExecuteScriptException;
 import org.example.exception.ValidException;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-public class ExecuteScriptCommand implements Command {
+public class ExecuteScriptCommand extends Throwable implements Command {
     private CollectionController cc;
     private String param;
 
@@ -15,7 +16,7 @@ public class ExecuteScriptCommand implements Command {
         this.cc = cc;
     }
 
-    public void execute() throws IOException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException, ValidException {
+    public void execute() throws IOException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException, ValidException, ExecuteScriptException {
         cc.executeScript(param);
     }
 

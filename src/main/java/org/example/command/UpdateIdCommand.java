@@ -1,6 +1,7 @@
 package org.example.command;
 
 import org.example.entities.CollectionController;
+import org.example.exception.ValidException;
 
 public class UpdateIdCommand implements Command {
     private CollectionController cc;
@@ -21,7 +22,7 @@ public class UpdateIdCommand implements Command {
         this.personData = personData;
     }
 
-    public void execute() {
+    public void execute() throws ValidException {
         if (personData != null) {
             cc.updateIdScript(personData, param);
         } else {

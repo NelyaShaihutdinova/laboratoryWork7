@@ -1,3 +1,3 @@
-add adfs 342 32 true true 321 sdf 2 6 true
+add adfs 342.0 32 true true 321.0 sdf 2 6 true
 show
 save
