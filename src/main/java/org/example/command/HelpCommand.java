@@ -7,6 +7,7 @@ public class HelpCommand implements Command {
         this.invoker = invoker;
     }
 
+    //вывод всех элементов commands и их описания
     @Override
     public void execute() {
         for (Command c : invoker.getCommands().values()) {
@@ -15,6 +16,7 @@ public class HelpCommand implements Command {
         System.out.println("exit - завершить программу (без сохранения в файл)");
     }
 
+    //Возвращаем информацию о команде для команды help
     public String descr() {
         return "help - вывести справку по доступным командам";
     }

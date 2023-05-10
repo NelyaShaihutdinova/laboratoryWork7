@@ -16,6 +16,7 @@ public class AddCommand implements Command {
         this.param = param;
     }
 
+    //Смотря, выполняется ли команда execute_script, выполняется метод из CollectionController
     @Override
     public void execute() throws ValidException {
         if (param != null) {
@@ -25,6 +26,7 @@ public class AddCommand implements Command {
         }
     }
 
+    //Возвращаем информацию о команде для команды help
     public String descr() {
         return "add - добавить новый элемент в коллекцию";
     }

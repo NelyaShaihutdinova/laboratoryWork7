@@ -2,12 +2,17 @@ package org.example.command;
 
 import org.example.entities.CollectionController;
 import org.example.exception.ExecuteScriptException;
+import org.example.exception.FileException;
 import org.example.exception.ValidException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Invoker {
@@ -17,6 +22,7 @@ public class Invoker {
     private String param;
     private String personData;
 
+    //конструктор класса с добавлением в HashMap commands команд и объектов соответствующего класса
     public Invoker(CollectionController cc) {
         this.cc = cc;
 
@@ -46,6 +52,7 @@ public class Invoker {
         return commands;
     }
 
+    //построчное чтение команд с изменением конструктора класса команды через рефлексию
     public void readCommands() throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         try {
             Scanner sc = new Scanner(System.in);
@@ -53,6 +60,9 @@ public class Invoker {
                 String line = sc.nextLine();
                 String[] tokens = line.split(" ");
                 Command command = commands.get(tokens[0]);
+                if (Objects.isNull(command)) {
+                    throw new ValidException("Команда не найдена");
+                }
                 if (tokens.length == 2) {
                     param = tokens[1];
                     Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class).newInstance(param, cc);
@@ -77,9 +87,12 @@ public class Invoker {
             readCommands();
         } catch (ExecuteScriptException e) {
             System.out.println(e.getMessage());
+        } catch (FileException e) {
+            throw new RuntimeException(e);
         }
     }
 
+    //построчное чтение команд с изменением конструктора класса команды через рефлексию для execute_script
     public void readCommandsScript(String newParam) throws ValidException {
         try {
             File script = new File(newParam);
@@ -94,6 +107,9 @@ public class Invoker {
                 } else if (tokensCheck.length == 12) {
                     String[] tokens = line.split(" ", 3);
                     Command command = commands.get(tokens[0]);
+                    if (Objects.isNull(command)) {
+                        throw new ValidException("Комманда не найдена");
+                    }
                     param = tokens[1];
                     personData = tokens[3];
                     Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class, String.class).newInstance(param, cc, personData);
@@ -102,6 +118,9 @@ public class Invoker {
                 } else if (tokensCheck.length == 11 || tokensCheck.length == 2) {
                     String[] tokens = line.split(" ", 2);
                     Command command = commands.get(tokens[0]);
+                    if (Objects.isNull(command)) {
+                        throw new ValidException("Комманда не найдена");
+                    }
                     param = tokens[1];
                     Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class).newInstance(param, cc);
                     commands.replace(tokens[0], updatedCommand);
@@ -109,6 +128,9 @@ public class Invoker {
                 } else {
                     String[] tokens = line.split(" ");
                     Command command = commands.get(tokens[0]);
+                    if (Objects.isNull(command)) {
+                        throw new ValidException("Комманда не найдена");
+                    }
                     command.execute();
                 }
             }
@@ -122,6 +144,9 @@ public class Invoker {
                     } else if (newTokensCheck.length == 12) {
                         String[] newTokens = line.split(" ", 3);
                         Command command = commands.get(newTokens[0]);
+                        if (Objects.isNull(command)) {
+                            throw new ValidException("Комманда не найдена");
+                        }
                         param = newTokens[1];
                         personData = newTokens[3];
                         Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class, String.class).newInstance(param, cc, personData);
@@ -130,6 +155,9 @@ public class Invoker {
                     } else if (newTokensCheck.length == 2 || newTokensCheck.length == 11) {
                         String[] newTokens = line.split(" ", 2);
                         Command command = commands.get(newTokens[0]);
+                        if (Objects.isNull(command)) {
+                            throw new ValidException("Комманда не найдена");
+                        }
                         param = newTokens[1];
                         Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class).newInstance(param, cc);
                         commands.replace(newTokens[0], updatedCommand);
@@ -137,24 +165,16 @@ public class Invoker {
                     } else {
                         String[] tokens = line.split(" ");
                         Command command = commands.get(tokens[0]);
+                        if (Objects.isNull(command)) {
+                            throw new ValidException("Комманда не найдена");
+                        }
                         command.execute();
                     }
                 }
             }
-        } catch (FileNotFoundException ex) {
-            throw new RuntimeException(ex);
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        } catch (InvocationTargetException ex) {
-            throw new RuntimeException(ex);
-        } catch (InstantiationException ex) {
-            throw new RuntimeException(ex);
-        } catch (IllegalAccessException ex) {
-            throw new RuntimeException(ex);
-        } catch (NoSuchMethodException ex) {
-            throw new RuntimeException(ex);
-        } catch (ExecuteScriptException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | FileException | ExecuteScriptException | InvocationTargetException |
+                 InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

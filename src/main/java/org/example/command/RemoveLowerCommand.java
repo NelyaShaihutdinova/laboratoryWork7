@@ -16,6 +16,7 @@ public class RemoveLowerCommand implements Command {
         this.param = param;
     }
 
+    //Смотря, выполняется ли команда execute_script, выполняется метод из CollectionController
     public void execute() throws ValidException {
         if (param != null) {
             cc.removeLowerScript(param);
@@ -24,6 +25,7 @@ public class RemoveLowerCommand implements Command {
         }
     }
 
+    //Возвращаем информацию о команде для команды help
     @Override
     public String descr() {
         return "remove_lower - удалить из коллекции все элементы, меньшие, чем заданный";

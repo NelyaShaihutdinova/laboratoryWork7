@@ -17,6 +17,7 @@ public class AddIfMinCommand implements Command {
         this.param = param;
     }
 
+    //Смотря, выполняется ли команда execute_script, выполняется метод из CollectionController
     public void execute() throws ValidException {
         if (param != null) {
             cc.addIfMinScript(param);
@@ -25,6 +26,7 @@ public class AddIfMinCommand implements Command {
         }
     }
 
+    //Возвращаем информацию о команде для команды help
     @Override
     public String descr() {
         return "add_if_min - добавить новый элемент в коллекцию, если его значение меньше, чем у наименьшего элемента этой коллекции";

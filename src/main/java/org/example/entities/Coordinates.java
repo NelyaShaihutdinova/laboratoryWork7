@@ -27,6 +27,7 @@ public class Coordinates {
         this.y = y;
     }
 
+    //формарование координат из x и y
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

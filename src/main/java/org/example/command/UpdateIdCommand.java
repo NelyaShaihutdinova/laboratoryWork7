@@ -22,6 +22,7 @@ public class UpdateIdCommand implements Command {
         this.personData = personData;
     }
 
+    //Смотря, выполняется ли команда execute_script, выполняется метод из CollectionController
     public void execute() throws ValidException {
         if (personData != null) {
             cc.updateIdScript(personData, param);
@@ -30,6 +31,7 @@ public class UpdateIdCommand implements Command {
         }
     }
 
+    //Возвращаем информацию о команде для команды help
     @Override
     public String descr() {
         return "update id - обновить значение элемента коллекции, id которого равен заданному";

@@ -5,18 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="004e6fb8-affb-4496-89dc-3c9665ed2c22" name="Changes" comment="validation2">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/exception/ExecuteScriptException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/builders/FileBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/exception/FileException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/test2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/AddCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/AddIfMinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/AddIfMinCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/ClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/ClearCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/CountGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/CountGreaterCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/ExecuteScriptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/ExecuteScriptCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/FilterContainsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/FilterContainsCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/FilterGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/FilterGreaterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/HelpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/InfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/InfoCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/Invoker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/Invoker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/RemoveByIdCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/RemoveGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/RemoveGreaterCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/RemoveLowerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/RemoveLowerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/SaveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/ShowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/ShowCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/UpdateIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/UpdateIdCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/Coordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/HumanSimpleValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/HumanSimpleValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab5" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/Writer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/Writer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/test" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/test" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +94,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn package" />
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
@@ -145,7 +166,11 @@
       <workItem from="1682669564346" duration="1421000" />
       <workItem from="1683193834601" duration="1719000" />
       <workItem from="1683636058903" duration="4611000" />
-      <workItem from="1683667191808" duration="5698000" />
+      <workItem from="1683667191808" duration="5812000" />
+      <workItem from="1683673950302" duration="3360000" />
+      <workItem from="1683702626046" duration="4727000" />
+      <workItem from="1683707408899" duration="333000" />
+      <workItem from="1683707769664" duration="2415000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1679557756007</created>
@@ -252,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683660688502</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="validation2">
+      <created>1683673185635</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1683673185635</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,8 +317,23 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java</url>
-          <line>381</line>
+          <line>242</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java</url>
+          <line>237</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java</url>
+          <line>258</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

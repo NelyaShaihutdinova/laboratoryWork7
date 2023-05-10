@@ -12,10 +12,12 @@ public class RemoveByIdCommand implements Command {
         this.cc = cc;
     }
 
+    //выполняется метод из CollectionController
     public void execute() throws ValidException {
         cc.removeId(param);
     }
 
+    //Возвращаем информацию о команде для команды help
     @Override
     public String descr() {
         return "remove_by_id id - удалить элемент из коллекции по его id";

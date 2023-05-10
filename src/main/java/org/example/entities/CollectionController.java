@@ -3,10 +3,12 @@ package org.example.entities;
 
 import org.example.command.Invoker;
 import org.example.exception.ExecuteScriptException;
+import org.example.exception.FileException;
 import org.example.exception.ValidException;
 import org.example.parser.Writer;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -30,12 +32,14 @@ public class CollectionController {
         this.humanValidator = validator;
     }
 
+    //создаём человека и добавляем в коллекцию
     public void addNewHuman() {
         HumanBeing newHumanBeing = personBuild();
         collection.add(newHumanBeing);
         sort();
     }
 
+    //считываем человека, проверяем на валидность и добавляем в коллекцию
     public void addNewHumanScript(String param) throws ValidException {
         HumanBeing newHumanBeing = personBuildScript(param);
         humanValidator.checkElement(newHumanBeing);
@@ -43,25 +47,30 @@ public class CollectionController {
         sort();
     }
 
+    //сортировка коллекции по скорости
     private void sort() {
         collection = collection.stream().sorted().collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
+    //вывод всех элементов коллекции
     public void show() {
         for (HumanBeing humanBeing : collection) {
             System.out.println(humanBeing);
         }
     }
 
+    //очистка коллекции
     public void clear() {
         collection.clear();
     }
 
+    //вывод информации о коллекции
     public void info() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm:ss");
         System.out.println("Тип: HashSet" + " Дата инициализации: " + creationDate.format(formatter) + " Количество элементов: " + collection.size());
     }
 
+    //замена элемента с id равным введённому
     public void updateId(String param) {
         for (HumanBeing humanBeing : collection) {
             if (humanBeing.getId() == Integer.parseInt(String.valueOf(param))) {
@@ -83,6 +92,7 @@ public class CollectionController {
         sort();
     }
 
+    //замена элемента с id равным введённому для execute_script
     public void updateIdScript(String personData, String param) throws ValidException {
         for (HumanBeing humanBeing : collection) {
             if (humanBeing.getId() == Integer.parseInt(String.valueOf(param))) {
@@ -105,6 +115,7 @@ public class CollectionController {
         sort();
     }
 
+    //удаление элемента с id равным введённому
     public void removeId(String param) throws ValidException {
         if (param.matches("^[0-9]+$")) {
             collection.removeIf(humanBeing -> humanBeing.getId() == Integer.parseInt(String.valueOf(param)));
@@ -113,6 +124,7 @@ public class CollectionController {
         }
     }
 
+    //создаём человека и если он является наименьшим, то добавляем в коллекцию
     public void addIfMin() {
         HumanBeing newHumanBeing = personBuild();
         if (collection.size() == 0) {
@@ -136,6 +148,7 @@ public class CollectionController {
         }
     }
 
+    //создаём человека и если он является наименьшим, то добавляем в коллекцию для execute_script
     public void addIfMinScript(String param) throws ValidException {
         HumanBeing newHumanBeing = personBuildScript(param);
         humanValidator.checkElement(newHumanBeing);
@@ -220,7 +233,7 @@ public class CollectionController {
         }
     }
 
-    public void save() {
+    public void save() throws IOException, FileException {
         writer.writeCollectionToFile(writer.parsingPersonsToXml(new ArrayList<>(collection)), file);
 
     }
@@ -234,8 +247,8 @@ public class CollectionController {
     public HumanBeing personBuildScript(String param) throws ValidException {
         String[] data = param.split(" ");
         if ((data[0] != null) && (data[1].matches("^[-+]?[0-9]*\\.?[0-9]+$")) &&
-                (data[2].matches("^[-+]?[0-9]+$") && Double.parseDouble(param) < 945) &&
-                (data[5].matches("^[-+]?[0-9]*\\.?[0-9]+$") && Double.parseDouble(param) > -992) &&
+                (data[2].matches("^[-+]?[0-9]+$") && Double.parseDouble(data[2]) < 945) &&
+                (data[5].matches("^[-+]?[0-9]*\\.?[0-9]+$") && Double.parseDouble(data[5]) > -992) &&
                 (data[6] != null) && (data[7].matches("^[1-3]$")) && (data[8].matches("^[1-4]$"))) {
             String newName = data[0];
             Double newX = Double.valueOf(data[1]);

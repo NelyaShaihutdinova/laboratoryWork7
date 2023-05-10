@@ -2,6 +2,8 @@ package org.example.parser;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.example.builders.FileBuilder;
+import org.example.exception.FileException;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -24,14 +26,19 @@ public class Writer<T> {
         }
     }
 
-    public void writeCollectionToFile(String data, File file) {
-        try {
-            BufferedWriter writter = new BufferedWriter(new FileWriter(file));
-            writter.write(data);
-            writter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void writeCollectionToFile(String data, File file) throws IOException, FileException {
+        if (FileBuilder.checkOpportunityForWrite(file)) {
+            try {
+                BufferedWriter writter = new BufferedWriter(new FileWriter(file));
+                writter.write(data);
+                writter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            throw new FileException("Беда с правами на файл");
         }
+
     }
 }
 

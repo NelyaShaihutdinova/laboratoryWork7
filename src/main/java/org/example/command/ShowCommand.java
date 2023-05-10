@@ -9,11 +9,13 @@ public class ShowCommand implements Command {
         this.cc = cc;
     }
 
+    //выполняется метод из CollectionController
     @Override
     public void execute() {
         cc.show();
     }
 
+    //Возвращаем информацию о команде для команды help
     public String descr() {
         return "show - вывести все элементы коллекции";
     }
