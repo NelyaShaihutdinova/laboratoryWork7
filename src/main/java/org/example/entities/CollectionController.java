@@ -361,7 +361,7 @@ public class CollectionController {
         }
         Integer newWeaponType = null;
         while (newWeaponType == null || newWeaponType < 1 || newWeaponType > 3) {
-            System.out.println("print WeaponType (Boolean):");
+            System.out.println("print WeaponType (Integer [1-3]):");
             try {
                 newWeaponType = scanner.nextInt();
             } catch (InputMismatchException | NullPointerException e) {
@@ -371,7 +371,7 @@ public class CollectionController {
         }
         Integer newMood = null;
         while (newMood == null || newMood < 1 || newMood > 4) {
-            System.out.println("print Mood (Boolean):");
+            System.out.println("print Mood (Integer [1-4]):");
             try {
                 newMood = scanner.nextInt();
             } catch (InputMismatchException | NullPointerException e) {

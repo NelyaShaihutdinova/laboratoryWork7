@@ -56,31 +56,34 @@ public class Invoker {
     public void readCommands() throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         try {
             Scanner sc = new Scanner(System.in);
-            while (sc.hasNext()) {
-                String line = sc.nextLine();
-                String[] tokens = line.split(" ");
-                Command command = commands.get(tokens[0]);
-                if (Objects.isNull(command)) {
-                    throw new ValidException("Команда не найдена");
-                }
-                if (tokens.length == 2) {
-                    param = tokens[1];
-                    Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class).newInstance(param, cc);
-                    commands.replace(tokens[0], updatedCommand);
-                    String exit = "exit";
-                    if (exit.equals(line)) {
-                        sc.close();
+            try {
+                while (sc.hasNext()) {
+                    String line = sc.nextLine();
+                    String[] tokens = line.split(" ");
+                    Command command = commands.get(tokens[0]);
+                    if (tokens.length == 2) {
+                        param = tokens[1];
+                        Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class).newInstance(param, cc);
+                        commands.replace(tokens[0], updatedCommand);
+                        String exit = "exit";
+                        if (exit.equals(line)) {
+                            sc.close();
+                        } else {
+                            updatedCommand.execute();
+                        }
                     } else {
-                        updatedCommand.execute();
-                    }
-                } else {
-                    String exit = "exit";
-                    if (exit.equals(line)) {
-                        sc.close();
-                    } else {
-                        command.execute();
+                        String exit = "exit";
+                        if (exit.equals(line)) {
+                            sc.close();
+                        } else if (Objects.isNull(command)) {
+                            throw new ValidException("Команда не найдена");
+                        } else {
+                            command.execute();
+                        }
                     }
                 }
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
             }
         } catch (ValidException e) {
             System.out.println(e.getMessage());
