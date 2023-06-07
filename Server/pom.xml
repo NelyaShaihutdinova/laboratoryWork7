@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.example</groupId>
+        <artifactId>LaboratoryWork5</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
-    <groupId>org.example</groupId>
-    <artifactId>LaboratoryWork5</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>Client</module>
-        <module>Server</module>
-        <module>CommonLibrary</module>
-    </modules>
+    <groupId>org.lab5</groupId>
+    <artifactId>Server</artifactId>
 
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven.assembly.plugin.version>2.4</maven.assembly.plugin.version>
+        <dep.version>1.0-SNAPSHOT</dep.version>
+    </properties>
 
     <build>
         <plugins>
@@ -39,7 +45,7 @@
                         </descriptorRefs>
                         <archive>
                             <manifest>
-                                <mainClass>org.example.ClientMain</mainClass>
+                                <mainClass>ServerMain</mainClass>
                             </manifest>
                         </archive>
                     </configuration>
@@ -56,32 +62,13 @@
             </plugins>
         </pluginManagement>
     </build>
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- plugins -->
-        <maven.assembly.plugin.version>2.4</maven.assembly.plugin.version>
-        <!-- dependencies -->
-        <dep.version>1.0-SNAPSHOT</dep.version>
-    </properties>
     <dependencies>
         <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-            <version>2.11.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.11.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
+            <artifactId>CommonLibrary</artifactId>
+            <groupId>org.example</groupId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
 </project>

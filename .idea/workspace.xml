@@ -5,12 +5,85 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="004e6fb8-affb-4496-89dc-3c9665ed2c22" name="Changes" comment="validation3">
+      <change afterPath="$PROJECT_DIR$/Client/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/client/CommandShaper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/client/ConsoleWorker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/client/ValidException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/org/example/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommonLibrary/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/org/example/LibraryMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/builders/CommandBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/builders/CommandShaper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/builders/FileBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/AddCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/AddIfMinCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/ClearCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/Command.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/CountGreaterCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/ExecuteScriptCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/FilterContainsCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/FilterGreaterCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/HelpCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/InfoCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/Invoker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/RemoveByIdCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/RemoveGreaterCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/RemoveLowerCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/SaveCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/ShowCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/command/UpdateIdCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/entities/Car.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/entities/Coordinates.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/entities/HumanBeing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/entities/HumanSimpleValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/entities/Mood.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/entities/Validator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/entities/WeaponType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/exception/ExecuteScriptException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/exception/FileException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/exception/ValidException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/org/example/Server.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/parser/Reader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/parser/Writer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/Invoker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/command/Invoker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab5" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/lab5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/Writer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/Writer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/builders/FileBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/builders/FileBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/AddCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/AddIfMinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/AddIfMinCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/ClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/ClearCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/CountGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/CountGreaterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/ExecuteScriptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/ExecuteScriptCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/FilterContainsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/FilterContainsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/FilterGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/FilterGreaterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/HelpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/InfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/InfoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/Invoker.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/Invoker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/RemoveByIdCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/RemoveGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/RemoveGreaterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/RemoveLowerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/RemoveLowerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/SaveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/ShowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/ShowCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/command/UpdateIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/command/UpdateIdCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/entities/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/CollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/CollectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/entities/Coordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/HumanBeing.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/entities/HumanBeing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/HumanSimpleValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/entities/HumanSimpleValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/Mood.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/entities/Mood.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/entities/Validator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/entities/WeaponType.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/entities/WeaponType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/exception/ExecuteScriptException.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/exception/ExecuteScriptException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/exception/FileException.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/exception/FileException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/exception/ValidException.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/exception/ValidException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/lab5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/parser/Reader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/Writer.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/parser/Writer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/test2" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,24 +132,52 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-11&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/fohad/IdeaProjects/LAB6/LaboratoryWork5/Server/src/main/java/command&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\fohad\IdeaProjects\LAB6\LaboratoryWork5\Server\src\main\java\command" />
+      <recent name="C:\Users\fohad\IdeaProjects\LAB6\LaboratoryWork5\Server\src\main\java\exception" />
+      <recent name="C:\Users\fohad\IdeaProjects\LAB6\LaboratoryWork5\Server\src\main\java\entities" />
+      <recent name="C:\Users\fohad\IdeaProjects\LAB6\LaboratoryWork5\Server\src\main\java\parser" />
+      <recent name="C:\Users\fohad\IdeaProjects\LAB6\LaboratoryWork5\Server\src\main\java" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="builders" />
+      <recent name="client" />
+    </key>
+  </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn package" />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Client">
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Client" />
+      <module name="Client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
       <module name="LaboratoryWork5" />
@@ -90,19 +191,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Server" />
+      <module name="Server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.Server" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -149,6 +254,10 @@
       <workItem from="1683707408899" duration="333000" />
       <workItem from="1683707769664" duration="2466000" />
       <workItem from="1683900494906" duration="1337000" />
+      <workItem from="1684594062858" duration="600000" />
+      <workItem from="1684852001383" duration="15386000" />
+      <workItem from="1686062188741" duration="14057000" />
+      <workItem from="1686132255148" duration="8105000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1679557756007</created>
@@ -340,6 +449,71 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/example/command/Invoker.java</url>
           <line>76</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/org/example/Client.java</url>
+          <line>110</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/org/example/Client.java</url>
+          <line>109</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/org/example/Client.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/org/example/Client.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/org/example/Client.java</url>
+          <line>106</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/org/example/Client.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/org/example/Client.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/org/example/Client.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/org/example/Server.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/org/example/Server.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/org/example/Server.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/org/example/Server.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/org/example/Server.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
