@@ -1,75 +1,119 @@
-//package client;
-//
-//import command.*;
-//import org.example.Client;
-//
-//import java.io.IOException;
-//import java.util.HashMap;
-//import java.util.Map;
-//import java.util.Objects;
-//import java.util.Scanner;
-//
-//public class ConsoleWorker {
-//    private Map<String, Command> commands = new HashMap<>();
-//
-//
-//
-//
-//    //конструктор класса с добавлением в HashMap commands команд и объектов соответствующего класса
-////    public ConsoleWorker() {
-////        commands.put("add", new AddCommand(param));
-////        commands.put("show", new ShowCommand(param));
-////        commands.put("clear", new ClearCommand(param));
-////        commands.put("info", new InfoCommand(param));
-////        commands.put("help", new HelpCommand(param));
-////        commands.put("add_if_min", new AddIfMinCommand(param));
-////        commands.put("remove_greater", new RemoveGreaterCommand(param));
-////        commands.put("remove_lower", new RemoveLowerCommand(param));
-////        commands.put("update", new UpdateIdCommand(param));
-////        commands.put("remove_by_id", new RemoveByIdCommand(param));
-////        commands.put("count_greater_than_impact_speed", new CountGreaterCommand(param));
-////        commands.put("filter_contains_soundtrack_name", new FilterContainsCommand(param));
-////        commands.put("filter_greater_than_impact_speed", new FilterGreaterCommand(param));
-////        commands.put("execute_script", new ExecuteScriptCommand(param));
-////    }
-//
-//    public Map<String, Command> getCommands() {
-//        return commands;
-//    }
-//
-//    public void readCommands(Client client) throws ValidException, IOException {
-//        Scanner sc = new Scanner(System.in);
-//        while (sc.hasNext()) {
-//            String line = sc.nextLine();
-//            String[] tokens = line.split(" ");
-//            Command command = commands.get(tokens[0]);
-//
-//            String param = String.valueOf(commands.get((tokens[1])));
-//            String exit = "exit";
-//            commands.put("add", new AddCommand(param));
-//            commands.put("show", new ShowCommand(param));
-//            commands.put("clear", new ClearCommand(param));
-//            commands.put("info", new InfoCommand(param));
-//            commands.put("help", new HelpCommand(param));
-//            commands.put("add_if_min", new AddIfMinCommand(param));
-//            commands.put("remove_greater", new RemoveGreaterCommand(param));
-//            commands.put("remove_lower", new RemoveLowerCommand(param));
-//            commands.put("update", new UpdateIdCommand(param));
-//            commands.put("remove_by_id", new RemoveByIdCommand(param));
-//            commands.put("count_greater_than_impact_speed", new CountGreaterCommand(param));
-//            commands.put("filter_contains_soundtrack_name", new FilterContainsCommand(param));
-//            commands.put("filter_greater_than_impact_speed", new FilterGreaterCommand(param));
-//            commands.put("execute_script", new ExecuteScriptCommand(param));
-//            if (exit.equals(line)) {
-//                sc.close();
-//            }
-////            } else if (Objects.isNull(command)) {
-////                throw new ValidException("Команда не найдена");
-//            else {
-//                command.execute();
-//            }
-//        }
-//
-//    }
-//}
+package client;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import static java.lang.System.in;
+
+public class ConsoleWorker {
+    public String buildParam() {
+        Scanner scanner = new Scanner(in);
+        String newName = null;
+        while (newName == null || newName == "") {
+            System.out.println("print name (String):");
+            try {
+                newName = scanner.nextLine();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите имя ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+        Double newX = null;
+        while (newX == null) {
+            System.out.println("print x (Double):");
+            try {
+                newX = scanner.nextDouble();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите x ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+        Integer newY = null;
+        while (newY == null || newY > 945) {
+            System.out.println("print y (Integer):");
+            try {
+                newY = scanner.nextInt();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите x ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+        Boolean newRealHero = null;
+        while (newRealHero == null) {
+            System.out.println("print realHero (Boolean):");
+            try {
+                newRealHero = scanner.nextBoolean();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите realHero ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+
+        Boolean newHasToothpick = null;
+        while (newHasToothpick == null) {
+            System.out.println("print hasToothpick (Boolean):");
+            try {
+                newHasToothpick = scanner.nextBoolean();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите hasToothpick ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+
+        Double newImpactSpeed = null;
+        while (newImpactSpeed == null || newImpactSpeed <= -992) {
+            System.out.println("print impactSpeed (Double):");
+            try {
+                newImpactSpeed = scanner.nextDouble();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите impactSpeed ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+
+        scanner.nextLine();
+        String newSoundtrackName = null;
+        while (newSoundtrackName == null) {
+            System.out.println("print soundTrackName (String):");
+            try {
+                newSoundtrackName = scanner.nextLine();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите имя саундтрека ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+        Boolean newCool = null;
+        while (newCool == null) {
+            System.out.println("print cool (Boolean):");
+            try {
+                newCool = scanner.nextBoolean();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите cool ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+        Integer newWeaponType = null;
+        while (newWeaponType == null || newWeaponType < 1 || newWeaponType > 3) {
+            System.out.println("print WeaponType (Integer [1-3]):");
+            try {
+                newWeaponType = scanner.nextInt();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите WeaponType ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+        Integer newMood = null;
+        while (newMood == null || newMood < 1 || newMood > 4) {
+            System.out.println("print Mood (Integer [1-4]):");
+            try {
+                newMood = scanner.nextInt();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите Mood ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+        String param = newName + ' ' + newX + ' ' + newY + ' ' + newRealHero + ' ' + newHasToothpick + ' ' + newImpactSpeed + ' ' + newSoundtrackName + ' ' + newWeaponType + ' ' + newMood + ' ' + newCool;
+        return param;
+    }
+
+}
