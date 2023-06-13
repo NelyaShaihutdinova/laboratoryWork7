@@ -1,6 +1,7 @@
 package command;
 
 
+import builders.ResponseShaper;
 import exception.ValidException;
 
 public class RemoveGreaterCommand implements Command {
@@ -17,14 +18,7 @@ public class RemoveGreaterCommand implements Command {
     }
 
     //Смотря, выполняется ли команда execute_script, выполняется метод из CollectionController
-    public void execute() throws ValidException {
-        cc.removeGreater(param);
+    public ResponseShaper execute() throws ValidException {
+        return cc.removeGreater(param);
     }
-
-    //Возвращаем информацию о команде для команды help
-    @Override
-    public String descr() {
-        return "remove_greater - удалить из коллекции все элементы, превышающие заданный";
-    }
-
 }

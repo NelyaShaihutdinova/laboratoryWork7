@@ -1,6 +1,7 @@
 package command;
 
 
+import builders.ResponseShaper;
 import entities.*;
 import exception.ExecuteScriptException;
 import exception.FileException;
@@ -31,11 +32,13 @@ public class CollectionController {
     }
 
     //считываем человека, проверяем на валидность и добавляем в коллекцию
-    public void addNewHuman(String param) throws ValidException {
+    public ResponseShaper addNewHuman(String param) throws ValidException {
         HumanBeing newHumanBeing = personBuild(param);
         humanValidator.checkElement(newHumanBeing);
         collection.add(newHumanBeing);
         sort();
+        ResponseShaper responseShaper = new ResponseShaper("add completed");
+        return responseShaper;
     }
 
     //сортировка коллекции по скорости
@@ -44,25 +47,29 @@ public class CollectionController {
     }
 
     //вывод всех элементов коллекции
-    public void show() {
-        for (HumanBeing humanBeing : collection) {
-            System.out.println(humanBeing);
-        }
+    public ResponseShaper show() {
+        ResponseShaper responseShaper = new ResponseShaper(String.valueOf(collection));
+        return responseShaper;
     }
 
+
     //очистка коллекции
-    public void clear() {
+    public ResponseShaper clear() {
         collection.clear();
+        ResponseShaper responseShaper = new ResponseShaper("clear completed");
+        return responseShaper;
     }
 
     //вывод информации о коллекции
-    public void info() {
+    public ResponseShaper info() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm:ss");
-        System.out.println("Тип: HashSet" + " Дата инициализации: " + creationDate.format(formatter) + " Количество элементов: " + collection.size());
+        String resultInfo = "Тип: HashSet" + " Дата инициализации: " + creationDate.format(formatter) + " Количество элементов: " + collection.size();
+        ResponseShaper responseShaper = new ResponseShaper(resultInfo);
+        return responseShaper;
     }
 
     //замена элемента с id равным введённому
-    public void updateId(String param) throws ValidException {
+    public ResponseShaper updateId(String param) throws ValidException {
         for (HumanBeing humanBeing : collection) {
             if (humanBeing.getId() == Integer.parseInt(String.valueOf(param))) {
                 HumanBeing newHumanBeing = personBuild(param);
@@ -79,10 +86,12 @@ public class CollectionController {
             }
         }
         sort();
+        ResponseShaper responseShaper = new ResponseShaper("update completed");
+        return responseShaper;
     }
 
     //замена элемента с id равным введённому для execute_script
-    public void updateIdScript(String personData, String param) throws ValidException {
+    public ResponseShaper updateIdScript(String personData, String param) throws ValidException {
         for (HumanBeing humanBeing : collection) {
             if (humanBeing.getId() == Integer.parseInt(String.valueOf(param))) {
 
@@ -102,20 +111,25 @@ public class CollectionController {
             }
         }
         sort();
+        ResponseShaper responseShaper = new ResponseShaper("update completed");
+        return responseShaper;
     }
 
     //удаление элемента с id равным введённому
-    public void removeId(String param) throws ValidException {
+    public ResponseShaper removeId(String param) throws ValidException {
         if (param.matches("^[0-9]+$")) {
             collection.removeIf(humanBeing -> humanBeing.getId() == Integer.parseInt(param));
+            ResponseShaper responseShaper = new ResponseShaper("remove_by_id completed");
+            return responseShaper;
         } else {
-            throw new ValidException("Uncorrected id");
+            ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Uncorrected id")));
+            return responseShaper;
         }
     }
 
 
     //создаём человека и если он является наименьшим, то добавляем в коллекцию для execute_script
-    public void addIfMin(String param) throws ValidException {
+    public ResponseShaper addIfMin(String param) throws ValidException {
         HumanBeing newHumanBeing = personBuild(param);
         humanValidator.checkElement(newHumanBeing);
         if (collection.size() == 0) {
@@ -137,22 +151,28 @@ public class CollectionController {
                 }
             }
         }
+        ResponseShaper responseShaper = new ResponseShaper("add_if_min completed");
+        return responseShaper;
     }
 
 
-    public void removeGreater(String param) throws ValidException {
+    public ResponseShaper removeGreater(String param) throws ValidException {
         HumanBeing newHumanBeing = personBuild(param);
         humanValidator.checkElement(newHumanBeing);
         collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() > newHumanBeing.getImpactSpeed());
+        ResponseShaper responseShaper = new ResponseShaper("count_greater_than_impact_speed completed");
+        return responseShaper;
     }
 
-    public void removeLower(String param) throws ValidException {
+    public ResponseShaper removeLower(String param) throws ValidException {
         HumanBeing newHumanBeing = personBuild(param);
         humanValidator.checkElement(newHumanBeing);
         collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() < newHumanBeing.getImpactSpeed());
+        ResponseShaper responseShaper = new ResponseShaper("remove_lower completed");
+        return responseShaper;
     }
 
-    public void countGreater(String param) throws ValidException {
+    public ResponseShaper countGreater(String param) throws ValidException {
         if (param.matches("^[-+]?[0-9]*\\\\.?[0-9]+$") && Double.parseDouble(param) > -992) {
             int counter = 0;
             for (HumanBeing humanBeing : collection) {
@@ -160,45 +180,55 @@ public class CollectionController {
                     counter += 1;
                 }
             }
-            System.out.println(counter);
+            ResponseShaper responseShaper = new ResponseShaper(String.valueOf(counter));
+            return responseShaper;
         } else {
-            throw new ValidException("Uncorrected ImpactSpeed");
+            ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Uncorrected ImpactSpeed")));
+            return responseShaper;
         }
     }
 
-    public void filterContains(String param) throws ValidException {
+    public ResponseShaper filterContains(String param) throws ValidException {
         if (param != null) {
             for (HumanBeing humanBeing : collection) {
                 if (humanBeing.getSoundtrackName().contains(param)) {
                     System.out.println(humanBeing);
                 }
             }
+            ResponseShaper responseShaper = new ResponseShaper("filter_contains_soundtrack_name completed");
+            return responseShaper;
         } else {
-            throw new ValidException("Uncorrected SoundTrackName");
+            ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Uncorrected SoundTrackName")));
+            return responseShaper;
         }
     }
 
-    public void filterGreater(String param) throws ValidException {
+    public ResponseShaper filterGreater(String param) throws ValidException {
         if (param.matches("^[-+]?[0-9]*\\.?[0-9]+$") && Double.parseDouble(param) > -992) {
             for (HumanBeing humanBeing : collection) {
                 if (humanBeing.getImpactSpeed() > Double.parseDouble(param)) {
                     System.out.println(humanBeing);
                 }
             }
+            ResponseShaper responseShaper = new ResponseShaper("filter_greater_than_impact_speed completed");
+            return responseShaper;
         } else {
-            throw new ValidException("Uncorrected ImpactSpeed");
+            ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Uncorrected ImpactSpeed")));
+            return responseShaper;
         }
     }
 
-    public void save() throws IOException, FileException {
+    public ResponseShaper save() throws IOException, FileException {
         writer.writeCollectionToFile(writer.parsingPersonsToXml(new ArrayList<>(collection)), file);
-
+        return null;
     }
 
-    public void executeScript(String param) throws ValidException, ExecuteScriptException {
+    public ResponseShaper executeScript(String param) throws ValidException, ExecuteScriptException {
         recursionChecker.addFile(param);
         Invoker invoker = new Invoker(this);
         invoker.readCommandsScript(param);
+        ResponseShaper responseShaper = new ResponseShaper("execute_script completed");
+        return responseShaper;
     }
 
     public HumanBeing personBuild(String param) throws ValidException {
@@ -226,7 +256,8 @@ public class CollectionController {
             ZonedDateTime newCreationDate = ZonedDateTime.now();
             return new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
         } else {
-            throw new ValidException("Uncorrected person data");
+            ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Uncorrected person data")));
+            return null;
         }
     }
 
@@ -246,7 +277,7 @@ public class CollectionController {
 
         private void checkRecursion() throws ExecuteScriptException {
             if (history.size() != size) {
-                throw new ExecuteScriptException("RECURSION:(");
+                ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ExecuteScriptException("RECURSION:(")));
             }
         }
 

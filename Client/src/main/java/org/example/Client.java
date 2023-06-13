@@ -3,8 +3,11 @@ package org.example;
 import builders.CommandShaper;
 import client.ConsoleWorker;
 import client.RequestSender;
+import client.ResponseWorker;
 
 import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.util.Scanner;
 
 
@@ -20,17 +23,31 @@ public class Client {
     public Client() {
     }
 
-    public static void main(String[] args) throws IOException {
-        Client client = new Client("localhost", 1030);
-        client.readCommands();
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Client client = new Client("localhost", 1050);
+        DatagramSocket ds = new DatagramSocket(1060);
+        DatagramPacket pack = new DatagramPacket(new byte[10000000], 1000000);
+        client.readCommands(ds, pack);
+//        ds.receive(pack);
+//        ResponseWorker responseWorker = new ResponseWorker();
+//        CommandShaper commandShaper = responseWorker.deserializeResponse(pack.getData());
+//        System.out.println(commandShaper);
+
+//        DatagramSocket ds = new DatagramSocket(1030);
+//        DatagramPacket pack = new DatagramPacket(new byte[10000000], 1000000);
+//        ds.receive(pack);
+//        ResponseWorker responseWorker =new ResponseWorker();
+//        ResponseShaper responseShaper = new ResponseShaper(deserializeResponse(pack.getData());
+//
+//        RequestWorker requestWorker = new RequestWorker();
+//        CommandShaper commandShaper = requestWorker.deserializeResponse(pack.getData());
 
     }
 
 
-    public void readCommands() throws IOException {
+    public void readCommands(DatagramSocket ds, DatagramPacket pack) throws IOException {
         Scanner sc = new Scanner(System.in);
         try {
-
             while (sc.hasNext()) {
                 String line = sc.nextLine();
                 String[] tokens = line.split(" ");
@@ -44,23 +61,31 @@ public class Client {
                     CommandShaper commandShaper = new CommandShaper(name, param);
                     RequestSender requestSender = new RequestSender(host, port);
                     requestSender.sendRequest(commandShaper);
+                    ds.receive(pack);
+                    ResponseWorker responseWorker = new ResponseWorker();
+                    System.out.println(responseWorker.deserializeResponse(pack.getData()));
                 } else if (tokens.length == 2) {
                     String param = tokens[1];
                     CommandShaper commandShaper = new CommandShaper(name, param);
                     RequestSender requestSender = new RequestSender(host, port);
                     requestSender.sendRequest(commandShaper);
+                    ds.receive(pack);
+                    ResponseWorker responseWorker = new ResponseWorker();
+                    System.out.println(responseWorker.deserializeResponse(pack.getData()));
                 } else {
                     String param = "no";
                     CommandShaper commandShaper = new CommandShaper(name, param);
                     RequestSender requestSender = new RequestSender(host, port);
                     requestSender.sendRequest(commandShaper);
-                }
-                if (exit.equals(line)) {
-                    sc.close();
+                    ds.receive(pack);
+                    ResponseWorker responseWorker = new ResponseWorker();
+                    System.out.println(responseWorker.deserializeResponse(pack.getData()).getResponse());
                 }
             }
         } catch (IllegalStateException e) {
             System.out.println("Bye");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 }

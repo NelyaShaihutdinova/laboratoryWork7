@@ -1,6 +1,7 @@
 package command;
 
 
+import builders.ResponseShaper;
 import exception.ValidException;
 
 public class RemoveByIdCommand implements Command {
@@ -13,14 +14,7 @@ public class RemoveByIdCommand implements Command {
     }
 
     //выполняется метод из CollectionController
-    public void execute() throws ValidException {
-        cc.removeId(param);
+    public ResponseShaper execute() throws ValidException {
+        return cc.removeId(param);
     }
-
-    //Возвращаем информацию о команде для команды help
-    @Override
-    public String descr() {
-        return "remove_by_id id - удалить элемент из коллекции по его id";
-    }
-
 }

@@ -1,6 +1,7 @@
 package command;
 
 
+import builders.ResponseShaper;
 import exception.FileException;
 
 import java.io.IOException;
@@ -14,12 +15,7 @@ public class SaveCommand implements Command {
 
     //выполняется метод из CollectionController
     @Override
-    public void execute() throws IOException, FileException {
-        cc.save();
-    }
-
-    //Возвращаем информацию о команде для команды help
-    public String descr() {
-        return "";
+    public ResponseShaper execute() throws IOException, FileException {
+        return cc.save();
     }
 }

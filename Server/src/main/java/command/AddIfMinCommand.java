@@ -1,6 +1,7 @@
 package command;
 
 
+import builders.ResponseShaper;
 import exception.ValidException;
 
 public class AddIfMinCommand implements Command {
@@ -17,13 +18,7 @@ public class AddIfMinCommand implements Command {
     }
 
     //Смотря, выполняется ли команда execute_script, выполняется метод из CollectionController
-    public void execute() throws ValidException {
-        cc.addIfMin(param);
-    }
-
-    //Возвращаем информацию о команде для команды help
-    @Override
-    public String descr() {
-        return "add_if_min - добавить новый элемент в коллекцию, если его значение меньше, чем у наименьшего элемента этой коллекции";
+    public ResponseShaper execute() throws ValidException {
+        return cc.addIfMin(param);
     }
 }

@@ -2,13 +2,18 @@ package org.example;
 
 import builders.CommandShaper;
 import builders.FileBuilder;
+import builders.ResponseShaper;
 import command.CollectionController;
 import command.Invoker;
 import entities.HumanBeing;
 import entities.HumanSimpleValidator;
+import exception.ExecuteScriptException;
+import exception.FileException;
+import exception.ValidException;
 import parser.Reader;
 import parser.Writer;
 import server.RequestWorker;
+import server.ResponseSender;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,12 +26,12 @@ public class Server {
 
     public static void main(String[] args) {
         try {
-            DatagramSocket ds = new DatagramSocket(1030);
+            DatagramSocket ds = new DatagramSocket(1050);
             while (true) {
                 DatagramPacket pack = new DatagramPacket(new byte[10000000], 1000000);
                 ds.receive(pack);
                 RequestWorker requestWorker = new RequestWorker();
-                CommandShaper commandShaper = requestWorker.deserializeResponse(pack.getData());
+                CommandShaper commandShaper = requestWorker.deserializeRequest(pack.getData());
                 FileBuilder fileBuilder = new FileBuilder();
                 File file = new File("C:\\Users\\fohad\\IdeaProjects\\LAB6\\LaboratoryWork5\\Server\\src\\main\\java\\lab5");
                 Writer<HumanBeing> writer = new Writer<>();
@@ -34,7 +39,11 @@ public class Server {
                 List<HumanBeing> humanBeings = reader.getPersons();
                 CollectionController cc = new CollectionController(humanBeings, writer, file, new HumanSimpleValidator());
                 Invoker invoker = new Invoker(commandShaper, cc);
-                invoker.readCommand();
+                ResponseSender responseSender = new ResponseSender("localhost", 1060);
+                ResponseShaper responseShaper = invoker.readCommand();
+                invoker.saveCommand();
+                responseSender.sendResponse(responseShaper);
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,6 +56,12 @@ public class Server {
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        } catch (FileException e) {
+            throw new RuntimeException(e);
+        } catch (ValidException e) {
+            throw new RuntimeException(e);
+        } catch (ExecuteScriptException e) {
             throw new RuntimeException(e);
         }
     }

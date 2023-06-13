@@ -1,6 +1,7 @@
 package command;
 
 import builders.CommandShaper;
+import builders.ResponseShaper;
 import exception.ExecuteScriptException;
 import exception.FileException;
 import exception.ValidException;
@@ -79,24 +80,22 @@ public class Invoker {
     }
 
     //построчное чтение команд с изменением конструктора класса команды через рефлексию
-    public void readCommand() throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public ResponseShaper readCommand() throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         try {
             String commandName = commandShaper.getName();
             Command command = commands.get(commandName);
             String line = "no";
             if (Objects.isNull(command)) {
-                throw new ValidException("Команда не найдена");
+                ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Команда не найдена")));
+                return responseShaper;
             } else if (commandShaper.getParam().equals(line)) {
-                command.execute();
-                Command newCommand = commands.get("save");
-                newCommand.execute();
+                return command.execute();
+
             } else {
                 String param = commandShaper.getParam();
                 Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class).newInstance(param, cc);
                 commands.replace(String.valueOf(command), updatedCommand);
-                updatedCommand.execute();
-                Command newCommand = commands.get("save");
-                newCommand.execute();
+                return updatedCommand.execute();
             }
 
         } catch (IllegalStateException e) {
@@ -108,6 +107,12 @@ public class Invoker {
         } catch (ExecuteScriptException e) {
             throw new RuntimeException(e);
         }
+        return null;
+    }
+
+    public void saveCommand() throws FileException, IOException, ValidException, ExecuteScriptException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
+        Command newCommand = commands.get("save");
+        newCommand.execute();
     }
 
 

@@ -1,6 +1,7 @@
 package command;
 
 
+import builders.ResponseShaper;
 import exception.ValidException;
 
 public class AddCommand implements Command {
@@ -18,12 +19,7 @@ public class AddCommand implements Command {
 
     //Смотря, выполняется ли команда execute_script, выполняется метод из CollectionController
     @Override
-    public void execute() throws ValidException {
-        cc.addNewHuman(param);
-    }
-
-    //Возвращаем информацию о команде для команды help
-    public String descr() {
-        return "add - добавить новый элемент в коллекцию";
+    public ResponseShaper execute() throws ValidException {
+        return cc.addNewHuman(param);
     }
 }

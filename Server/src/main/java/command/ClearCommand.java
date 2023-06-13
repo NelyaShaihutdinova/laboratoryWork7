@@ -1,6 +1,8 @@
 package command;
 
 
+import builders.ResponseShaper;
+
 public class ClearCommand implements Command {
 
     private CollectionController cc;
@@ -11,12 +13,7 @@ public class ClearCommand implements Command {
 
     //Смотря, выполняется ли команда execute_script, выполняется метод из CollectionController
     @Override
-    public void execute() {
-        cc.clear();
-    }
-
-    //Возвращаем информацию о команде для команды help
-    public String descr() {
-        return "clear - очистить коллекцию";
+    public ResponseShaper execute() {
+        return cc.clear();
     }
 }

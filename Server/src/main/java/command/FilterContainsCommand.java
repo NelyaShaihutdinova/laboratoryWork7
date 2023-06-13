@@ -1,6 +1,7 @@
 package command;
 
 
+import builders.ResponseShaper;
 import exception.ValidException;
 
 public class FilterContainsCommand implements Command {
@@ -13,14 +14,7 @@ public class FilterContainsCommand implements Command {
     }
 
     //выполняется метод из CollectionController
-    public void execute() throws ValidException {
-        cc.filterContains(param);
+    public ResponseShaper execute() throws ValidException {
+        return cc.filterContains(param);
     }
-
-    //Возвращаем информацию о команде для команды help
-    @Override
-    public String descr() {
-        return "filter_contains_soundtrack_name soundtrackName - вывести элементы, значение поля soundtrackName которых содержит заданную подстроку";
-    }
-
 }

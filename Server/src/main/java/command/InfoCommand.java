@@ -1,6 +1,8 @@
 package command;
 
 
+import builders.ResponseShaper;
+
 public class InfoCommand implements Command {
     private CollectionController cc;
 
@@ -10,12 +12,7 @@ public class InfoCommand implements Command {
 
     //выполняется метод из CollectionController
     @Override
-    public void execute() {
-        cc.info();
-    }
-
-    //Возвращаем информацию о команде для команды help
-    public String descr() {
-        return "info - вывести информацию о коллекции";
+    public ResponseShaper execute() {
+        return cc.info();
     }
 }

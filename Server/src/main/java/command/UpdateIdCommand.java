@@ -1,6 +1,7 @@
 package command;
 
 
+import builders.ResponseShaper;
 import exception.ValidException;
 
 public class UpdateIdCommand implements Command {
@@ -23,18 +24,11 @@ public class UpdateIdCommand implements Command {
     }
 
     //Смотря, выполняется ли команда execute_script, выполняется метод из CollectionController
-    public void execute() throws ValidException {
+    public ResponseShaper execute() throws ValidException {
         if (personData != null) {
-            cc.updateIdScript(personData, param);
+            return cc.updateIdScript(personData, param);
         } else {
-            cc.updateId(param);
+            return cc.updateId(param);
         }
     }
-
-    //Возвращаем информацию о команде для команды help
-    @Override
-    public String descr() {
-        return "update id - обновить значение элемента коллекции, id которого равен заданному";
-    }
-
 }

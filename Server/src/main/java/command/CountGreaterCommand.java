@@ -1,6 +1,7 @@
 package command;
 
 
+import builders.ResponseShaper;
 import exception.ValidException;
 
 public class CountGreaterCommand implements Command {
@@ -13,15 +14,7 @@ public class CountGreaterCommand implements Command {
     }
 
     //выполняется метод из CollectionController
-    public void execute() throws ValidException {
-        cc.countGreater(param);
+    public ResponseShaper execute() throws ValidException {
+        return cc.countGreater(param);
     }
-
-    //Возвращаем информацию о команде для команды help
-    @Override
-    public String descr() {
-        return "count_greater_than_impact_speed impactSpeed - вывести количество элементов, значение поля impactSpeed которых больше заданного";
-    }
-
-
 }

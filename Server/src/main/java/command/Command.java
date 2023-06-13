@@ -1,5 +1,6 @@
 package command;
 
+import builders.ResponseShaper;
 import exception.ExecuteScriptException;
 import exception.FileException;
 import exception.ValidException;
@@ -9,8 +10,6 @@ import java.lang.reflect.InvocationTargetException;
 
 //Интерфейс для команд
 public interface Command {
-    void execute() throws IOException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException, ValidException, ExecuteScriptException, FileException;
-
-    String descr();
+    ResponseShaper execute() throws IOException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException, ValidException, ExecuteScriptException, FileException;
 
 }

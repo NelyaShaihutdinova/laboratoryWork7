@@ -1,6 +1,7 @@
 package command;
 
 
+import builders.ResponseShaper;
 import exception.ValidException;
 
 public class RemoveLowerCommand implements Command {
@@ -17,13 +18,7 @@ public class RemoveLowerCommand implements Command {
     }
 
     //Смотря, выполняется ли команда execute_script, выполняется метод из CollectionController
-    public void execute() throws ValidException {
-        cc.removeLower(param);
-    }
-
-    //Возвращаем информацию о команде для команды help
-    @Override
-    public String descr() {
-        return "remove_lower - удалить из коллекции все элементы, меньшие, чем заданный";
+    public ResponseShaper execute() throws ValidException {
+        return cc.removeLower(param);
     }
 }

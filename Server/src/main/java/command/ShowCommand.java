@@ -1,5 +1,7 @@
 package command;
 
+import builders.ResponseShaper;
+
 public class ShowCommand implements Command {
     private CollectionController cc;
 
@@ -9,12 +11,7 @@ public class ShowCommand implements Command {
 
     //выполняется метод из CollectionController
     @Override
-    public void execute() {
-        cc.show();
-    }
-
-    //Возвращаем информацию о команде для команды help
-    public String descr() {
-        return "show - вывести все элементы коллекции";
+    public ResponseShaper execute() {
+        return cc.show();
     }
 }
