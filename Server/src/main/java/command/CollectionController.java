@@ -68,28 +68,6 @@ public class CollectionController {
         return responseShaper;
     }
 
-    //замена элемента с id равным введённому
-    public ResponseShaper updateId(String param) throws ValidException {
-        for (HumanBeing humanBeing : collection) {
-            if (humanBeing.getId() == Integer.parseInt(String.valueOf(param))) {
-                HumanBeing newHumanBeing = personBuild(param);
-                humanBeing.setName(newHumanBeing.getName());
-                humanBeing.setCar(newHumanBeing.getCar());
-                humanBeing.setCoordinates(newHumanBeing.getCoordinates());
-                humanBeing.setCreationDate(newHumanBeing.getCreationDate());
-                humanBeing.setRealHero(newHumanBeing.getRealHero());
-                humanBeing.setHasToothpick(newHumanBeing.getHasToothpick());
-                humanBeing.setImpactSpeed(newHumanBeing.getImpactSpeed());
-                humanBeing.setSoundtrackName(newHumanBeing.getSoundtrackName());
-                humanBeing.setWeaponType(newHumanBeing.getWeaponType());
-                humanBeing.setMood(newHumanBeing.getMood());
-            }
-        }
-        sort();
-        ResponseShaper responseShaper = new ResponseShaper("update completed");
-        return responseShaper;
-    }
-
     //замена элемента с id равным введённому для execute_script
     public ResponseShaper updateIdScript(String personData, String param) throws ValidException {
         for (HumanBeing humanBeing : collection) {

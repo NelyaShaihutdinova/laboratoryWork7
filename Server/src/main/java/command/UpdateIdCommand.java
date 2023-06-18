@@ -25,10 +25,6 @@ public class UpdateIdCommand implements Command {
 
     //Смотря, выполняется ли команда execute_script, выполняется метод из CollectionController
     public ResponseShaper execute() throws ValidException {
-        if (personData != null) {
-            return cc.updateIdScript(personData, param);
-        } else {
-            return cc.updateId(param);
-        }
+        return cc.updateIdScript(personData, param);
     }
 }

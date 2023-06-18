@@ -44,6 +44,7 @@ public class Server {
                 invoker.saveCommand();
                 responseSender.sendResponse(responseShaper);
 
+
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -28,20 +28,6 @@ public class Client {
         DatagramSocket ds = new DatagramSocket(1060);
         DatagramPacket pack = new DatagramPacket(new byte[10000000], 1000000);
         client.readCommands(ds, pack);
-//        ds.receive(pack);
-//        ResponseWorker responseWorker = new ResponseWorker();
-//        CommandShaper commandShaper = responseWorker.deserializeResponse(pack.getData());
-//        System.out.println(commandShaper);
-
-//        DatagramSocket ds = new DatagramSocket(1030);
-//        DatagramPacket pack = new DatagramPacket(new byte[10000000], 1000000);
-//        ds.receive(pack);
-//        ResponseWorker responseWorker =new ResponseWorker();
-//        ResponseShaper responseShaper = new ResponseShaper(deserializeResponse(pack.getData());
-//
-//        RequestWorker requestWorker = new RequestWorker();
-//        CommandShaper commandShaper = requestWorker.deserializeResponse(pack.getData());
-
     }
 
 
@@ -55,7 +41,7 @@ public class Client {
                 String exit = "exit";
                 if (exit.equals(line)) {
                     sc.close();
-                } else if (name.equals("add") || name.equals("add_if_min") || name.equals("update") || name.equals("remove_greater") || name.equals("remove_lower")) {
+                } else if (name.equals("add") || name.equals("add_if_min") || name.equals("remove_greater") || name.equals("remove_lower")) {
                     ConsoleWorker consoleWorker = new ConsoleWorker();
                     String param = consoleWorker.buildParam();
                     CommandShaper commandShaper = new CommandShaper(name, param);
@@ -63,7 +49,16 @@ public class Client {
                     requestSender.sendRequest(commandShaper);
                     ds.receive(pack);
                     ResponseWorker responseWorker = new ResponseWorker();
-                    System.out.println(responseWorker.deserializeResponse(pack.getData()));
+                    System.out.println(responseWorker.deserializeResponse(pack.getData()).getResponse());
+                } else if (name.equals("update")) {
+                    ConsoleWorker consoleWorker = new ConsoleWorker();
+                    String param = tokens[1] + " " + consoleWorker.buildParam();
+                    CommandShaper commandShaper = new CommandShaper(name, param);
+                    RequestSender requestSender = new RequestSender(host, port);
+                    requestSender.sendRequest(commandShaper);
+                    ds.receive(pack);
+                    ResponseWorker responseWorker = new ResponseWorker();
+                    System.out.println(responseWorker.deserializeResponse(pack.getData()).getResponse());
                 } else if (tokens.length == 2) {
                     String param = tokens[1];
                     CommandShaper commandShaper = new CommandShaper(name, param);
@@ -71,7 +66,7 @@ public class Client {
                     requestSender.sendRequest(commandShaper);
                     ds.receive(pack);
                     ResponseWorker responseWorker = new ResponseWorker();
-                    System.out.println(responseWorker.deserializeResponse(pack.getData()));
+                    System.out.println(responseWorker.deserializeResponse(pack.getData()).getResponse());
                 } else {
                     String param = "no";
                     CommandShaper commandShaper = new CommandShaper(name, param);

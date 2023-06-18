@@ -85,12 +85,20 @@ public class Invoker {
             String commandName = commandShaper.getName();
             Command command = commands.get(commandName);
             String line = "no";
+            String[] tokensCheck = commandShaper.getParam().split(" ");
             if (Objects.isNull(command)) {
                 ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Команда не найдена")));
                 return responseShaper;
             } else if (commandShaper.getParam().equals(line)) {
                 return command.execute();
 
+            } else if (tokensCheck.length == 11) {
+                String[] tokens = commandShaper.getParam().split(" ", 2);
+                param = tokens[0];
+                personData = tokens[1];
+                Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class, String.class).newInstance(param, cc, personData);
+                commands.replace(String.valueOf(command), updatedCommand);
+                return updatedCommand.execute();
             } else {
                 String param = commandShaper.getParam();
                 Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class).newInstance(param, cc);
@@ -117,88 +125,90 @@ public class Invoker {
 
 
     //построчное чтение команд с изменением конструктора класса команды через рефлексию для execute_script
-    public void readCommandsScript(String newParam) throws ValidException {
+    public ResponseShaper readCommandsScript(String newParam) throws ValidException {
         try {
             File script = new File(newParam);
             FileReader fr = new FileReader(script);
             BufferedReader reader = new BufferedReader(fr);
             String line = reader.readLine();
             if (line != null) {
-                String exit = "exit";
                 String[] tokensCheck = line.split(" ");
-                if (exit.equals(line)) {
-                    reader.close();
-                } else if (tokensCheck.length == 12) {
+                if (tokensCheck.length == 12) {
                     String[] tokens = line.split(" ", 3);
                     Command command = commands.get(tokens[0]);
                     if (Objects.isNull(command)) {
-                        throw new ValidException("Комманда не найдена");
+                        ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Комманда не найдена")));
+                        return responseShaper;
                     }
                     param = tokens[1];
                     personData = tokens[2];
                     Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class, String.class).newInstance(param, cc, personData);
                     commands.replace(tokens[0], updatedCommand);
-                    updatedCommand.execute();
+                    return updatedCommand.execute();
                 } else if (tokensCheck.length == 11 || tokensCheck.length == 2) {
                     String[] tokens = line.split(" ", 2);
                     Command command = commands.get(tokens[0]);
                     if (Objects.isNull(command)) {
-                        throw new ValidException("Комманда не найдена");
+                        ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Комманда не найдена")));
+                        return responseShaper;
                     }
                     param = tokens[1];
                     Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class).newInstance(param, cc);
                     commands.replace(tokens[0], updatedCommand);
-                    updatedCommand.execute();
+                    return updatedCommand.execute();
                 } else {
                     String[] tokens = line.split(" ");
                     Command command = commands.get(tokens[0]);
                     if (Objects.isNull(command)) {
-                        throw new ValidException("Комманда не найдена");
+                        ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Комманда не найдена")));
+                        return responseShaper;
                     }
-                    command.execute();
+                    return command.execute();
                 }
             }
             while (line != null) {
                 line = reader.readLine();
                 if (line != null) {
-                    String newExit = "exit";
                     String[] newTokensCheck = line.split(" ");
-                    if (newExit.equals(line)) {
-                        reader.close();
-                    } else if (newTokensCheck.length == 12) {
+                    if (newTokensCheck.length == 12) {
                         String[] newTokens = line.split(" ", 3);
                         Command command = commands.get(newTokens[0]);
                         if (Objects.isNull(command)) {
-                            throw new ValidException("Комманда не найдена");
+                            ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Комманда не найдена")));
+                            return responseShaper;
                         }
                         param = newTokens[1];
                         personData = newTokens[2];
                         Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class, String.class).newInstance(param, cc, personData);
                         commands.replace(newTokens[0], updatedCommand);
-                        updatedCommand.execute();
+                        return updatedCommand.execute();
                     } else if (newTokensCheck.length == 2 || newTokensCheck.length == 11) {
                         String[] newTokens = line.split(" ", 2);
                         Command command = commands.get(newTokens[0]);
                         if (Objects.isNull(command)) {
-                            throw new ValidException("Комманда не найдена");
+                            ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Комманда не найдена")));
+                            return responseShaper;
                         }
                         param = newTokens[1];
                         Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class).newInstance(param, cc);
                         commands.replace(newTokens[0], updatedCommand);
-                        updatedCommand.execute();
+                        return updatedCommand.execute();
                     } else {
                         String[] tokens = line.split(" ");
                         Command command = commands.get(tokens[0]);
                         if (Objects.isNull(command)) {
-                            throw new ValidException("Комманда не найдена");
+                            ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Комманда не найдена")));
+                            return responseShaper;
                         }
-                        command.execute();
+                        return command.execute();
                     }
                 }
             }
         } catch (IOException | FileException | ExecuteScriptException | InvocationTargetException |
                  InstantiationException | IllegalAccessException | NoSuchMethodException e) {
             System.out.println(e.getMessage());
+            return null;
         }
+        return null;
     }
 }
