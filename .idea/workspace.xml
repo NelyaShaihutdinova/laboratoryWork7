@@ -4,37 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="004e6fb8-affb-4496-89dc-3c9665ed2c22" name="Changes" comment="lab6">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/builders/Auntification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/main/java/server/ServerRunner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/main/java/server/SqlUserManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/client/ConsoleWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/client/ConsoleWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/org/example/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/org/example/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommonLibrary/src/main/java/builders/CommandShaper.java" beforeDir="false" afterPath="$PROJECT_DIR$/CommonLibrary/src/main/java/builders/CommandShaper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/AddCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/AddIfMinCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/AddIfMinCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/ClearCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/ClearCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/CollectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/CollectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/CountGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/CountGreaterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/ExecuteScriptCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/ExecuteScriptCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/FilterContainsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/FilterContainsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/FilterGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/FilterGreaterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/HelpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/HelpCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/InfoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/InfoCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/Invoker.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/Invoker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/RemoveByIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/RemoveByIdCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/RemoveGreaterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/RemoveGreaterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/RemoveLowerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/RemoveLowerCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/SaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/SaveCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/ShowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/ShowCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/command/UpdateIdCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/command/UpdateIdCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/entities/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/entities/Coordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/entities/HumanBeing.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/entities/HumanBeing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/lab5" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/lab5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/org/example/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/org/example/Server.java" afterDir="false" />
-    </list>
+    <list default="true" id="004e6fb8-affb-4496-89dc-3c9665ed2c22" name="Changes" comment="lab7.1" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -221,7 +191,7 @@
       <workItem from="1687158394271" duration="6694000" />
       <workItem from="1687535919990" duration="11000" />
       <workItem from="1690627088411" duration="475000" />
-      <workItem from="1690971619473" duration="8655000" />
+      <workItem from="1690971619473" duration="8960000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1679557756007</created>
@@ -370,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687088832801</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="lab7.1">
+      <created>1691422913037</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1691422913037</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -396,7 +373,8 @@
     <MESSAGE value="validation3" />
     <MESSAGE value="lab6 request done" />
     <MESSAGE value="lab6" />
-    <option name="LAST_COMMIT_MESSAGE" value="lab6" />
+    <MESSAGE value="lab7.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="lab7.1" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -446,102 +424,102 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/org/example/Server.java</url>
-          <line>34</line>
+          <line>33</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/org/example/Server.java</url>
-          <line>35</line>
+          <line>34</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>104</line>
+          <line>102</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>105</line>
+          <line>103</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>108</line>
+          <line>106</line>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>106</line>
+          <line>104</line>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>112</line>
+          <line>110</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>111</line>
+          <line>109</line>
           <option name="timeStamp" value="52" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>160</line>
+          <line>158</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>162</line>
+          <line>160</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>165</line>
+          <line>163</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>167</line>
+          <line>165</line>
           <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>170</line>
+          <line>168</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>173</line>
+          <line>171</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>175</line>
+          <line>173</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>179</line>
+          <line>177</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>181</line>
+          <line>179</line>
           <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/org/example/Server.java</url>
-          <line>44</line>
+          <line>43</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/org/example/Server.java</url>
-          <line>45</line>
+          <line>44</line>
           <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>189</line>
+          <line>187</line>
           <option name="timeStamp" value="69" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -626,32 +604,32 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>114</line>
+          <line>112</line>
           <option name="timeStamp" value="91" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>115</line>
+          <line>113</line>
           <option name="timeStamp" value="92" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/server/SqlUserManager.java</url>
-          <line>31</line>
+          <line>29</line>
           <option name="timeStamp" value="98" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>90</line>
+          <line>88</line>
           <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>92</line>
+          <line>90</line>
           <option name="timeStamp" value="100" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/command/Invoker.java</url>
-          <line>95</line>
+          <line>93</line>
           <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">

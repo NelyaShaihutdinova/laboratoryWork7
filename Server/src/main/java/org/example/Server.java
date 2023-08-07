@@ -43,7 +43,7 @@ public class Server {
                 CollectionController cc = new CollectionController(humanBeings, writer, file, new HumanSimpleValidator());
                 Invoker invoker = new Invoker(commandShaper, cc);
                 ResponseSender responseSender = new ResponseSender("localhost", 1060);
-                Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/studs", "s369037", "GdZL4OaGX6CNEWsV");
+                Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/studs", "", "");
                 ResponseShaper responseShaper = invoker.readCommand(connection);
                 invoker.saveCommand();
                 responseSender.sendResponse(responseShaper);
