@@ -1,5 +1,6 @@
 package org.example;
 
+import builders.Auntification;
 import builders.CommandShaper;
 import client.ConsoleWorker;
 import client.RequestSender;
@@ -27,11 +28,12 @@ public class Client {
         Client client = new Client("localhost", 1050);
         DatagramSocket ds = new DatagramSocket(1060);
         DatagramPacket pack = new DatagramPacket(new byte[10000000], 1000000);
-        client.readCommands(ds, pack);
+        ConsoleWorker consoleWorker = new ConsoleWorker();
+        client.readCommands(ds, pack, consoleWorker.loginUser());
     }
 
 
-    public void readCommands(DatagramSocket ds, DatagramPacket pack) throws IOException {
+    public void readCommands(DatagramSocket ds, DatagramPacket pack, Auntification auntification) throws IOException {
         Scanner sc = new Scanner(System.in);
         try {
             while (sc.hasNext()) {
@@ -44,7 +46,7 @@ public class Client {
                 } else if (name.equals("add") || name.equals("add_if_min") || name.equals("remove_greater") || name.equals("remove_lower")) {
                     ConsoleWorker consoleWorker = new ConsoleWorker();
                     String param = consoleWorker.buildParam();
-                    CommandShaper commandShaper = new CommandShaper(name, param);
+                    CommandShaper commandShaper = new CommandShaper(name, param, auntification);
                     RequestSender requestSender = new RequestSender(host, port);
                     requestSender.sendRequest(commandShaper);
                     ds.receive(pack);
@@ -53,7 +55,7 @@ public class Client {
                 } else if (name.equals("update")) {
                     ConsoleWorker consoleWorker = new ConsoleWorker();
                     String param = tokens[1] + " " + consoleWorker.buildParam();
-                    CommandShaper commandShaper = new CommandShaper(name, param);
+                    CommandShaper commandShaper = new CommandShaper(name, param, auntification);
                     RequestSender requestSender = new RequestSender(host, port);
                     requestSender.sendRequest(commandShaper);
                     ds.receive(pack);
@@ -61,7 +63,7 @@ public class Client {
                     System.out.println(responseWorker.deserializeResponse(pack.getData()).getResponse());
                 } else if (tokens.length == 2) {
                     String param = tokens[1];
-                    CommandShaper commandShaper = new CommandShaper(name, param);
+                    CommandShaper commandShaper = new CommandShaper(name, param, auntification);
                     RequestSender requestSender = new RequestSender(host, port);
                     requestSender.sendRequest(commandShaper);
                     ds.receive(pack);
@@ -69,7 +71,7 @@ public class Client {
                     System.out.println(responseWorker.deserializeResponse(pack.getData()).getResponse());
                 } else {
                     String param = "no";
-                    CommandShaper commandShaper = new CommandShaper(name, param);
+                    CommandShaper commandShaper = new CommandShaper(name, param, auntification);
                     RequestSender requestSender = new RequestSender(host, port);
                     requestSender.sendRequest(commandShaper);
                     ds.receive(pack);

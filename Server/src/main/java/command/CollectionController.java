@@ -32,8 +32,8 @@ public class CollectionController {
     }
 
     //считываем человека, проверяем на валидность и добавляем в коллекцию
-    public ResponseShaper addNewHuman(String param) throws ValidException {
-        HumanBeing newHumanBeing = personBuild(param);
+    public ResponseShaper addNewHuman(String ownerId, String param) throws ValidException {
+        HumanBeing newHumanBeing = personBuild(ownerId, param);
         humanValidator.checkElement(newHumanBeing);
         collection.add(newHumanBeing);
         sort();
@@ -54,7 +54,7 @@ public class CollectionController {
 
 
     //очистка коллекции
-    public ResponseShaper clear() {
+    public ResponseShaper clear(String ownerId) {
         collection.clear();
         ResponseShaper responseShaper = new ResponseShaper("clear completed");
         return responseShaper;
@@ -69,11 +69,11 @@ public class CollectionController {
     }
 
     //замена элемента с id равным введённому для execute_script
-    public ResponseShaper updateIdScript(String personData, String param) throws ValidException {
+    public ResponseShaper updateIdScript(String ownerId, String personData, String param) throws ValidException {
         for (HumanBeing humanBeing : collection) {
             if (humanBeing.getId() == Integer.parseInt(String.valueOf(param))) {
 
-                HumanBeing newHumanBeing = personBuild(personData);
+                HumanBeing newHumanBeing = personBuild(ownerId, personData);
                 humanValidator.checkElement(newHumanBeing);
 
                 humanBeing.setName(newHumanBeing.getName());
@@ -107,8 +107,8 @@ public class CollectionController {
 
 
     //создаём человека и если он является наименьшим, то добавляем в коллекцию для execute_script
-    public ResponseShaper addIfMin(String param) throws ValidException {
-        HumanBeing newHumanBeing = personBuild(param);
+    public ResponseShaper addIfMin(String ownerId, String param) throws ValidException {
+        HumanBeing newHumanBeing = personBuild(ownerId, param);
         humanValidator.checkElement(newHumanBeing);
         if (collection.size() == 0) {
             sort();
@@ -134,16 +134,16 @@ public class CollectionController {
     }
 
 
-    public ResponseShaper removeGreater(String param) throws ValidException {
-        HumanBeing newHumanBeing = personBuild(param);
+    public ResponseShaper removeGreater(String ownerId, String param) throws ValidException {
+        HumanBeing newHumanBeing = personBuild(ownerId, param);
         humanValidator.checkElement(newHumanBeing);
         collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() > newHumanBeing.getImpactSpeed());
         ResponseShaper responseShaper = new ResponseShaper("count_greater_than_impact_speed completed");
         return responseShaper;
     }
 
-    public ResponseShaper removeLower(String param) throws ValidException {
-        HumanBeing newHumanBeing = personBuild(param);
+    public ResponseShaper removeLower(String ownerId, String param) throws ValidException {
+        HumanBeing newHumanBeing = personBuild(ownerId, param);
         humanValidator.checkElement(newHumanBeing);
         collection.removeIf(humanBeing -> humanBeing.getImpactSpeed() < newHumanBeing.getImpactSpeed());
         ResponseShaper responseShaper = new ResponseShaper("remove_lower completed");
@@ -209,7 +209,7 @@ public class CollectionController {
         return responseShaper;
     }
 
-    public HumanBeing personBuild(String param) throws ValidException {
+    public HumanBeing personBuild(String ownerId, String param) throws ValidException {
         String[] data = param.split(" ");
         if ((data[0] != null) && (data[1].matches("^[-+]?[0-9]*\\.?[0-9]+$")) &&
                 (data[2].matches("^[-+]?[0-9]+$") && Double.parseDouble(data[2]) < 945) &&
@@ -232,7 +232,7 @@ public class CollectionController {
             WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
             Mood mood = Mood.fromInteger(newMood);
             ZonedDateTime newCreationDate = ZonedDateTime.now();
-            return new HumanBeing(newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
+            return new HumanBeing(ownerId, newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
         } else {
             ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Uncorrected person data")));
             return null;

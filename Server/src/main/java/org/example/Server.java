@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Server {
@@ -40,7 +43,8 @@ public class Server {
                 CollectionController cc = new CollectionController(humanBeings, writer, file, new HumanSimpleValidator());
                 Invoker invoker = new Invoker(commandShaper, cc);
                 ResponseSender responseSender = new ResponseSender("localhost", 1060);
-                ResponseShaper responseShaper = invoker.readCommand();
+                Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/studs", "s369037", "GdZL4OaGX6CNEWsV");
+                ResponseShaper responseShaper = invoker.readCommand(connection);
                 invoker.saveCommand();
                 responseSender.sendResponse(responseShaper);
 
@@ -63,6 +67,8 @@ public class Server {
         } catch (ValidException e) {
             throw new RuntimeException(e);
         } catch (ExecuteScriptException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }

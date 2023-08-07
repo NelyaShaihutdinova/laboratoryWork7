@@ -24,6 +24,8 @@ public class HumanBeing implements Comparable<HumanBeing> {
     private Mood mood; //Поле не может быть null
     @JacksonXmlProperty
     private Car car; //Поле может быть null
+    @JacksonXmlProperty(localName = "ownerId", isAttribute = true)
+    private String ownerId;
 
     public HumanBeing() {
     }
@@ -32,7 +34,7 @@ public class HumanBeing implements Comparable<HumanBeing> {
     public HumanBeing(int newId, String newName, Coordinates newCoordinates, ZonedDateTime newCreationDate, Boolean newRealHero, Boolean newHasToothpick, Integer newImpactSpeed, String newSoundtrackName, WeaponType weaponType, Mood mood, Car newCar) {
     }
 
-    public HumanBeing(int id, String name, Coordinates coordinates, ZonedDateTime creationDate, Boolean realHero, Boolean hasToothpick, Double impactSpeed, String soundtrackName, WeaponType weaponType, Mood mood, Car car) {
+    public HumanBeing(String ownerId, int id, String name, Coordinates coordinates, ZonedDateTime creationDate, Boolean realHero, Boolean hasToothpick, Double impactSpeed, String soundtrackName, WeaponType weaponType, Mood mood, Car car) {
         this.id = id;
         this.name = name;
         this.coordinates = coordinates;
@@ -44,6 +46,7 @@ public class HumanBeing implements Comparable<HumanBeing> {
         this.weaponType = weaponType;
         this.mood = mood;
         this.car = car;
+        this.ownerId = ownerId;
     }
 
     public String getName() {
@@ -127,15 +130,27 @@ public class HumanBeing implements Comparable<HumanBeing> {
         this.car = car;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
 
     @Override
     public String toString() {
-        return "id: " + id + " name: " + name + " coordinates: " + coordinates + " creationDate: " + creationDate + " realHero: " + realHero + " hasToothpicks: " + hasToothpick + " impactSpeed: " + impactSpeed + " soundtrackName: " + soundtrackName + " weaponType: " + weaponType + " moon: " + mood + " car: " + car + "\n";
+        return "ownerId: " + ownerId + " id: " + id + " name: " + name + " coordinates: " + coordinates + " creationDate: " + creationDate + " realHero: " + realHero + " hasToothpicks: " + hasToothpick + " impactSpeed: " + impactSpeed + " soundtrackName: " + soundtrackName + " weaponType: " + weaponType + " moon: " + mood + " car: " + car + "\n";
     }
 
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
 
     @Override
     public int compareTo(HumanBeing o) {

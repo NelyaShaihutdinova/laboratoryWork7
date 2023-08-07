@@ -8,8 +8,10 @@ import java.io.IOException;
 
 public class SaveCommand implements Command {
     private CollectionController cc;
+    private String ownerId;
 
-    public SaveCommand(CollectionController cc) {
+    public SaveCommand(String ownerId, CollectionController cc) {
+        this.ownerId = ownerId;
         this.cc = cc;
     }
 

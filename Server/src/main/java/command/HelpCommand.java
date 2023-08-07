@@ -4,8 +4,10 @@ import builders.ResponseShaper;
 
 public class HelpCommand implements Command {
     private Invoker invoker;
+    private String ownerId;
 
-    public HelpCommand(Invoker invoker) {
+    public HelpCommand(String ownerId, Invoker invoker) {
+        this.ownerId = ownerId;
         this.invoker = invoker;
     }
 

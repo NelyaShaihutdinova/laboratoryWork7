@@ -1,5 +1,7 @@
 package client;
 
+import builders.Auntification;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -116,4 +118,41 @@ public class ConsoleWorker {
         return param;
     }
 
+    public Auntification loginUser() {
+        Scanner scanner = new Scanner(System.in);
+        String userName = null;
+        String password = null;
+        String userAction = null;
+        System.out.println("Если вы новый пользователь зарегистрируйтесь написав команду reg, если вы уже зарегистрированы войдите в аккаунт написав команду login");
+        userAction = "";
+        var checkCommand = true;
+        while (checkCommand) {
+            userAction = scanner.nextLine().trim();
+            if (userAction.equals("reg")) checkCommand = false;
+            if (userAction.equals("login")) checkCommand = false;
+            if (checkCommand)
+                System.out.println("Неверно введённая команда введите reg, если вы хотите зарегистрироваться или login, если вы уже зарегистрированы ");
+        }
+        while (userName == null) {
+            try {
+                System.out.println("Введите логин");
+                userName = scanner.nextLine();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите логин ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+        while (password == null) {
+            try {
+                System.out.println("Введите пароль");
+                password = scanner.nextLine();
+            } catch (InputMismatchException | NullPointerException e) {
+                System.out.println("Ошибка! Введите пароль ещё раз:)");
+                scanner.nextLine();
+            }
+        }
+
+        Auntification auntification = new Auntification(userName, password, userAction);
+        return auntification;
+    }
 }

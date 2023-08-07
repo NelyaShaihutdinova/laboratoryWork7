@@ -7,10 +7,13 @@ public class CommandShaper implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
     private String param;
+    private Auntification auntification;
 
-    public CommandShaper(String name, String param) {
+
+    public CommandShaper(String name, String param, Auntification auntification) {
         this.name = name;
         this.param = param;
+        this.auntification = auntification;
     }
 
     public String getName() {
@@ -29,5 +32,12 @@ public class CommandShaper implements Serializable {
         this.param = param;
     }
 
+    public Auntification getAuntification() {
+        return auntification;
+    }
+
+    public void setAuntification(Auntification auntification) {
+        this.auntification = auntification;
+    }
 }
 
