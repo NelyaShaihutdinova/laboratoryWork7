@@ -4,16 +4,14 @@ import builders.ResponseShaper;
 
 public class HelpCommand implements Command {
     private Invoker invoker;
-    private String ownerId;
 
-    public HelpCommand(String ownerId, Invoker invoker) {
-        this.ownerId = ownerId;
+    public HelpCommand(Invoker invoker) {
         this.invoker = invoker;
     }
 
     //вывод всех элементов commands и их описания
     @Override
-    public ResponseShaper execute() {
+    public ResponseShaper execute(String ownerId) {
         String resultHelp = "help - вывести справку по доступным командам\nadd - добавить новый элемент в коллекцию\n" +
                 "add_if_min - добавить новый элемент в коллекцию, если его значение меньше, чем у наименьшего элемента этой коллекции\n" +
                 "clear - очистить коллекцию\ncount_greater_than_impact_speed impactSpeed - вывести количество элементов, значение поля impactSpeed которых больше заданного\n" +

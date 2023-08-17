@@ -7,16 +7,14 @@ import exception.ValidException;
 public class FilterContainsCommand implements Command {
     private CollectionController cc;
     private String param;
-    private String ownerId;
 
-    public FilterContainsCommand(String ownerId, String param, CollectionController cc) {
-        this.ownerId = ownerId;
+    public FilterContainsCommand(String param, CollectionController cc) {
         this.param = param;
         this.cc = cc;
     }
 
     //выполняется метод из CollectionController
-    public ResponseShaper execute() throws ValidException {
+    public ResponseShaper execute(String ownerId) throws ValidException {
         return cc.filterContains(param);
     }
 }

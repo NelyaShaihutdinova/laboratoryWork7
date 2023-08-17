@@ -7,16 +7,14 @@ import exception.ValidException;
 public class CountGreaterCommand implements Command {
     private CollectionController cc;
     private String param;
-    private String ownerId;
 
-    public CountGreaterCommand(String ownerId, String param, CollectionController cc) {
-        this.ownerId = ownerId;
+    public CountGreaterCommand(String param, CollectionController cc) {
         this.param = param;
         this.cc = cc;
     }
 
     //выполняется метод из CollectionController
-    public ResponseShaper execute() throws ValidException {
+    public ResponseShaper execute(String ownerId) throws ValidException {
         return cc.countGreater(param);
     }
 }

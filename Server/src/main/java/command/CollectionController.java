@@ -2,43 +2,51 @@ package command;
 
 
 import builders.ResponseShaper;
-import entities.*;
+import entities.Car;
+import entities.Coordinates;
+import entities.HumanBeing;
+import entities.Validator;
 import exception.ExecuteScriptException;
-import exception.FileException;
 import exception.ValidException;
-import parser.Writer;
 
-import java.io.File;
-import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Random;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.stream.Collectors;
 
 public class CollectionController {
-    private final Writer<HumanBeing> writer;
     private final Validator<HumanBeing> humanValidator;
     private final RecursionChecker recursionChecker = new RecursionChecker();
-    private final File file;
     private HashSet<HumanBeing> collection;
     private ZonedDateTime creationDate;
+    private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
-    public CollectionController(List<HumanBeing> collection, Writer<HumanBeing> writer, File file, Validator<HumanBeing> validator) {
-        this.collection = new HashSet<>(collection);
-        this.file = file;
-        this.writer = writer;
+    public CollectionController(Validator<HumanBeing> validator) {
+        this.collection = new HashSet<>();
         this.creationDate = ZonedDateTime.now();
         this.humanValidator = validator;
     }
 
     //считываем человека, проверяем на валидность и добавляем в коллекцию
     public ResponseShaper addNewHuman(String ownerId, String param) throws ValidException {
+        lock.writeLock().lock();
         HumanBeing newHumanBeing = personBuild(ownerId, param);
         humanValidator.checkElement(newHumanBeing);
         collection.add(newHumanBeing);
         sort();
         ResponseShaper responseShaper = new ResponseShaper("add completed");
+        lock.writeLock().unlock();
         return responseShaper;
+    }
+
+    public void addBD(HumanBeing humanBeing) {
+        collection.add(humanBeing);
+        sort();
     }
 
     //сортировка коллекции по скорости
@@ -46,16 +54,22 @@ public class CollectionController {
         collection = collection.stream().sorted().collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
+    public HashSet<HumanBeing> getCollection() {
+        return collection;
+    }
+
     //вывод всех элементов коллекции
     public ResponseShaper show() {
-        ResponseShaper responseShaper = new ResponseShaper(String.valueOf(collection));
+        ResponseShaper responseShaper = new ResponseShaper(collection.toString());
         return responseShaper;
     }
 
 
     //очистка коллекции
     public ResponseShaper clear(String ownerId) {
-        collection.clear();
+        lock.writeLock().lock();
+        collection.removeIf(labWork -> labWork.getOwnerId().equals(ownerId));
+        lock.writeLock().unlock();
         ResponseShaper responseShaper = new ResponseShaper("clear completed");
         return responseShaper;
     }
@@ -196,18 +210,18 @@ public class CollectionController {
         }
     }
 
-    public ResponseShaper save() throws IOException, FileException {
-        writer.writeCollectionToFile(writer.parsingPersonsToXml(new ArrayList<>(collection)), file);
-        return null;
-    }
+//    public ResponseShaper save() throws IOException, FileException {
+//        writer.writeCollectionToFile(writer.parsingPersonsToXml(new ArrayList<>(collection)), file);
+//        return null;
+//    }
 
-    public ResponseShaper executeScript(String param) throws ValidException, ExecuteScriptException {
-        recursionChecker.addFile(param);
-        Invoker invoker = new Invoker(this);
-        invoker.readCommandsScript(param);
-        ResponseShaper responseShaper = new ResponseShaper("execute_script completed");
-        return responseShaper;
-    }
+//    public ResponseShaper executeScript(String param) throws ValidException, ExecuteScriptException {
+//        recursionChecker.addFile(param);
+//        Invoker invoker = new Invoker(this);
+//        invoker.readCommandsScript(param);
+//        ResponseShaper responseShaper = new ResponseShaper("execute_script completed");
+//        return responseShaper;
+//    }
 
     public HumanBeing personBuild(String ownerId, String param) throws ValidException {
         String[] data = param.split(" ");
@@ -229,8 +243,8 @@ public class CollectionController {
             int newId = random.nextInt(10000000);
             Coordinates newCoordinates = new Coordinates(newX, newY);
             Car newCar = new Car(newCool);
-            WeaponType weaponType = WeaponType.fromInteger(newWeaponType);
-            Mood mood = Mood.fromInteger(newMood);
+            Integer weaponType = newWeaponType;
+            Integer mood = newMood;
             ZonedDateTime newCreationDate = ZonedDateTime.now();
             return new HumanBeing(ownerId, newId, newName, newCoordinates, newCreationDate, newRealHero, newHasToothpick, newImpactSpeed, newSoundtrackName, weaponType, mood, newCar);
         } else {

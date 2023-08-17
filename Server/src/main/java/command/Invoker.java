@@ -5,6 +5,7 @@ import builders.ResponseShaper;
 import exception.ExecuteScriptException;
 import exception.FileException;
 import exception.ValidException;
+import server.SQLCollectionController;
 import server.SqlUserManager;
 
 import java.io.BufferedReader;
@@ -21,6 +22,7 @@ import java.util.Objects;
 
 public class Invoker {
     private CollectionController cc;
+    private SQLCollectionController sqlCollectionController;
     private Map<String, Command> commands = new HashMap<>();
     private CommandShaper commandShaper;
 
@@ -32,53 +34,27 @@ public class Invoker {
 
 
     //конструктор класса с добавлением в HashMap commands команд и объектов соответствующего класса
-    public Invoker(CommandShaper commandShaper, CollectionController cc) {
+    public Invoker(CommandShaper commandShaper, CollectionController cc, SQLCollectionController sqlCollectionController) {
         this.cc = cc;
         this.commandShaper = commandShaper;
-        commands.put("add", new AddCommand(ownerId, cc));
-        commands.put("add", new AddCommand(ownerId, param, cc));
-        commands.put("show", new ShowCommand(ownerId, cc));
-        commands.put("clear", new ClearCommand(ownerId, cc));
-        commands.put("info", new InfoCommand(ownerId, cc));
-        commands.put("help", new HelpCommand(ownerId, this));
-        commands.put("add_if_min", new AddIfMinCommand(ownerId, cc));
-        commands.put("add_if_min", new AddIfMinCommand(ownerId, cc, param));
-        commands.put("remove_greater", new RemoveGreaterCommand(ownerId, cc));
-        commands.put("remove_greater", new RemoveGreaterCommand(ownerId, cc, param));
-        commands.put("remove_lower", new RemoveLowerCommand(ownerId, cc));
-        commands.put("remove_lower", new RemoveLowerCommand(ownerId, cc, param));
-        commands.put("save", new SaveCommand(ownerId, cc));
-        commands.put("update", new UpdateIdCommand(ownerId, param, cc));
-        commands.put("update", new UpdateIdCommand(ownerId, param, cc, personData));
-        commands.put("remove_by_id", new RemoveByIdCommand(ownerId, param, cc));
-        commands.put("count_greater_than_impact_speed", new CountGreaterCommand(ownerId, param, cc));
-        commands.put("filter_contains_soundtrack_name", new FilterContainsCommand(ownerId, param, cc));
-        commands.put("filter_greater_than_impact_speed", new FilterGreaterCommand(ownerId, param, cc));
-        commands.put("execute_script", new ExecuteScriptCommand(ownerId, param, cc));
-    }
-
-    public Invoker(CollectionController cc) {
-        this.cc = cc;
-        commands.put("add", new AddCommand(ownerId, cc));
-        commands.put("add", new AddCommand(ownerId, param, cc));
-        commands.put("show", new ShowCommand(ownerId, cc));
-        commands.put("clear", new ClearCommand(ownerId, cc));
-        commands.put("info", new InfoCommand(ownerId, cc));
-        commands.put("help", new HelpCommand(ownerId, this));
-        commands.put("add_if_min", new AddIfMinCommand(ownerId, cc));
-        commands.put("add_if_min", new AddIfMinCommand(ownerId, cc, param));
-        commands.put("remove_greater", new RemoveGreaterCommand(ownerId, cc));
-        commands.put("remove_greater", new RemoveGreaterCommand(ownerId, cc, param));
-        commands.put("remove_lower", new RemoveLowerCommand(ownerId, cc));
-        commands.put("remove_lower", new RemoveLowerCommand(ownerId, cc, param));
-        commands.put("save", new SaveCommand(ownerId, cc));
-        commands.put("update", new UpdateIdCommand(ownerId, param, cc));
-        commands.put("update", new UpdateIdCommand(ownerId, param, cc, personData));
-        commands.put("remove_by_id", new RemoveByIdCommand(ownerId, param, cc));
-        commands.put("count_greater_than_impact_speed", new CountGreaterCommand(ownerId, param, cc));
-        commands.put("filter_contains_soundtrack_name", new FilterContainsCommand(ownerId, param, cc));
-        commands.put("filter_greater_than_impact_speed", new FilterGreaterCommand(ownerId, param, cc));
-        commands.put("execute_script", new ExecuteScriptCommand(ownerId, param, cc));
+        this.sqlCollectionController = sqlCollectionController;
+        commands.put("add", new AddCommand(param, cc, sqlCollectionController));
+        commands.put("add", new AddCommand(param, cc, sqlCollectionController, personData));
+        commands.put("show", new ShowCommand(cc));
+        commands.put("clear", new ClearCommand(cc, sqlCollectionController));
+        commands.put("info", new InfoCommand(cc));
+        commands.put("help", new HelpCommand(this));
+        commands.put("add_if_min", new AddIfMinCommand(cc, param));
+        commands.put("remove_greater", new RemoveGreaterCommand(cc, param));
+        commands.put("remove_lower", new RemoveLowerCommand(cc, param));
+//        commands.put("save", new SaveCommand(ownerId, cc));
+//        commands.put("update", new UpdateIdCommand(ownerId, param, cc));
+        commands.put("update", new UpdateIdCommand(param, cc, personData));
+        commands.put("remove_by_id", new RemoveByIdCommand(param, cc));
+        commands.put("count_greater_than_impact_speed", new CountGreaterCommand(param, cc));
+        commands.put("filter_contains_soundtrack_name", new FilterContainsCommand(param, cc));
+        commands.put("filter_greater_than_impact_speed", new FilterGreaterCommand(param, cc));
+//        commands.put("execute_script", new ExecuteScriptCommand(ownerId, param, cc));
     }
 
     public Map<String, Command> getCommands() {
@@ -87,7 +63,10 @@ public class Invoker {
 
     public String getAccount(Connection connection) throws SQLException, NoSuchAlgorithmException {
         SqlUserManager sqlUserManager = new SqlUserManager(connection);
-        if (commandShaper.getAuntification().getUserAction().equals("reg")) {
+        sqlUserManager.initUserTable();
+        if (sqlUserManager.searchUser(commandShaper.getAuntification()) && commandShaper.getAuntification().getUserAction().equals("reg")) {
+            return String.valueOf(sqlUserManager.login(commandShaper.getAuntification()));
+        } else if (commandShaper.getAuntification().getUserAction().equals("reg")) {
             sqlUserManager.registration(commandShaper.getAuntification());
             return String.valueOf(sqlUserManager.login(commandShaper.getAuntification()));
         } else if (commandShaper.getAuntification().getUserAction().equals("login")) {
@@ -99,7 +78,7 @@ public class Invoker {
     //построчное чтение команд с изменением конструктора класса команды через рефлексию
     public ResponseShaper readCommand(Connection connection) throws IOException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         try {
-            String ownerId = getAccount(connection);
+            ownerId = getAccount(connection);
             String commandName = commandShaper.getName();
             Command command = commands.get(commandName);
             String line = "no";
@@ -108,20 +87,20 @@ public class Invoker {
                 ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Команда не найдена")));
                 return responseShaper;
             } else if (commandShaper.getParam().equals(line)) {
-                return command.execute();
+                return command.execute(ownerId);
 
             } else if (tokensCheck.length == 11) {
                 String[] tokens = commandShaper.getParam().split(" ", 2);
                 param = tokens[0];
                 personData = tokens[1];
-                Command updatedCommand = command.getClass().getConstructor(String.class, String.class, CollectionController.class, String.class).newInstance(ownerId, param, cc, personData);
+                Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class, String.class).newInstance(param, cc, personData);
                 commands.replace(String.valueOf(command), updatedCommand);
-                return updatedCommand.execute();
+                return updatedCommand.execute(ownerId);
             } else {
                 String param = commandShaper.getParam();
-                Command updatedCommand = command.getClass().getConstructor(String.class, String.class, CollectionController.class).newInstance(ownerId, param, cc);
+                Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class, SQLCollectionController.class).newInstance(param, cc, sqlCollectionController);
                 commands.replace(String.valueOf(command), updatedCommand);
-                return updatedCommand.execute();
+                return updatedCommand.execute(ownerId);
             }
 
         } catch (IllegalStateException e) {
@@ -142,7 +121,7 @@ public class Invoker {
 
     public void saveCommand() throws FileException, IOException, ValidException, ExecuteScriptException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
         Command newCommand = commands.get("save");
-        newCommand.execute();
+        newCommand.execute(ownerId);
     }
 
 
@@ -166,7 +145,7 @@ public class Invoker {
                     personData = tokens[2];
                     Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class, String.class).newInstance(param, cc, personData);
                     commands.replace(tokens[0], updatedCommand);
-                    return updatedCommand.execute();
+                    return updatedCommand.execute(ownerId);
                 } else if (tokensCheck.length == 11 || tokensCheck.length == 2) {
                     String[] tokens = line.split(" ", 2);
                     Command command = commands.get(tokens[0]);
@@ -177,7 +156,7 @@ public class Invoker {
                     param = tokens[1];
                     Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class).newInstance(param, cc);
                     commands.replace(tokens[0], updatedCommand);
-                    return updatedCommand.execute();
+                    return updatedCommand.execute(ownerId);
                 } else {
                     String[] tokens = line.split(" ");
                     Command command = commands.get(tokens[0]);
@@ -185,7 +164,7 @@ public class Invoker {
                         ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Комманда не найдена")));
                         return responseShaper;
                     }
-                    return command.execute();
+                    return command.execute(ownerId);
                 }
             }
             while (line != null) {
@@ -203,7 +182,7 @@ public class Invoker {
                         personData = newTokens[2];
                         Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class, String.class).newInstance(param, cc, personData);
                         commands.replace(newTokens[0], updatedCommand);
-                        return updatedCommand.execute();
+                        return updatedCommand.execute(ownerId);
                     } else if (newTokensCheck.length == 2 || newTokensCheck.length == 11) {
                         String[] newTokens = line.split(" ", 2);
                         Command command = commands.get(newTokens[0]);
@@ -214,7 +193,7 @@ public class Invoker {
                         param = newTokens[1];
                         Command updatedCommand = command.getClass().getConstructor(String.class, CollectionController.class).newInstance(param, cc);
                         commands.replace(newTokens[0], updatedCommand);
-                        return updatedCommand.execute();
+                        return updatedCommand.execute(ownerId);
                     } else {
                         String[] tokens = line.split(" ");
                         Command command = commands.get(tokens[0]);
@@ -222,7 +201,7 @@ public class Invoker {
                             ResponseShaper responseShaper = new ResponseShaper(String.valueOf(new ValidException("Комманда не найдена")));
                             return responseShaper;
                         }
-                        return command.execute();
+                        return command.execute(ownerId);
                     }
                 }
             }

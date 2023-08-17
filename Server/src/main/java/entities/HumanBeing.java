@@ -20,21 +20,23 @@ public class HumanBeing implements Comparable<HumanBeing> {
     private Boolean hasToothpick; //Поле не может быть null
     private Double impactSpeed; //Значение поля должно быть больше -992, Поле может быть null
     private String soundtrackName; //Поле не может быть null
-    private WeaponType weaponType; //Поле не может быть null
-    private Mood mood; //Поле не может быть null
+    private Integer weaponType; //Поле не может быть null
+    private Integer mood; //Поле не может быть null
     @JacksonXmlProperty
     private Car car; //Поле может быть null
     @JacksonXmlProperty(localName = "ownerId", isAttribute = true)
     private String ownerId;
 
     public HumanBeing() {
+        coordinates = new Coordinates();
+        car = new Car();
     }
 
 
     public HumanBeing(int newId, String newName, Coordinates newCoordinates, ZonedDateTime newCreationDate, Boolean newRealHero, Boolean newHasToothpick, Integer newImpactSpeed, String newSoundtrackName, WeaponType weaponType, Mood mood, Car newCar) {
     }
 
-    public HumanBeing(String ownerId, int id, String name, Coordinates coordinates, ZonedDateTime creationDate, Boolean realHero, Boolean hasToothpick, Double impactSpeed, String soundtrackName, WeaponType weaponType, Mood mood, Car car) {
+    public HumanBeing(String ownerId, int id, String name, Coordinates coordinates, ZonedDateTime creationDate, Boolean realHero, Boolean hasToothpick, Double impactSpeed, String soundtrackName, Integer weaponType, Integer mood, Car car) {
         this.id = id;
         this.name = name;
         this.coordinates = coordinates;
@@ -105,19 +107,19 @@ public class HumanBeing implements Comparable<HumanBeing> {
         this.soundtrackName = soundtrackName;
     }
 
-    public WeaponType getWeaponType() {
+    public Integer getWeaponType() {
         return weaponType;
     }
 
-    public void setWeaponType(WeaponType weaponType) {
+    public void setWeaponType(Integer weaponType) {
         this.weaponType = weaponType;
     }
 
-    public Mood getMood() {
+    public Integer getMood() {
         return mood;
     }
 
-    public void setMood(Mood mood) {
+    public void setMood(Integer mood) {
         this.mood = mood;
     }
 

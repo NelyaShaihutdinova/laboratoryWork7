@@ -11,6 +11,14 @@ public class Car {
     public Car() {
     }
 
+    public boolean isCool() {
+        return cool;
+    }
+
+    public void setCool(boolean cool) {
+        this.cool = cool;
+    }
+
     public Car(boolean cool) {
         this.cool = cool;
     }
